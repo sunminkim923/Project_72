@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Controller} from 'react-hook-form';
+import {TouchableOpacity} from 'react-native';
 import {
   Wrapper,
   LogoWrapper,
@@ -7,10 +8,12 @@ import {
   UserInput,
   LoginButtonWrapper,
   LoginButton,
+  SignUpWrapper,
+  SignUp,
 } from './MainLogin.style';
-import SocialLogin from './socialLogin/socialLogin.container';
+// import SocialLogin from './socialLogin/socialLogin.container'; // 소셜 로그아웃시 문제 생겨서 잠시 주석
 
-const MainLoginPageUi = (props: any) => {
+const MainLoginUi = (props: any) => {
   return (
     <Wrapper>
       <LogoWrapper>
@@ -18,7 +21,7 @@ const MainLoginPageUi = (props: any) => {
       </LogoWrapper>
       <Controller
         control={props.control}
-        name="Email"
+        name="email"
         rules={{required: true}}
         render={({field: {onChange, onBlur, value}}) => (
           <UserInput
@@ -31,7 +34,7 @@ const MainLoginPageUi = (props: any) => {
       />
       <Controller
         control={props.control}
-        name="Password"
+        name="password"
         rules={{required: true}}
         render={({field: {onChange, onBlur, value}}) => (
           <UserInput
@@ -43,11 +46,19 @@ const MainLoginPageUi = (props: any) => {
           />
         )}
       />
-      <LoginButtonWrapper onPress={props.handleSubmit(props.onSubmit)}>
+      <LoginButtonWrapper onPress={props.handleSubmit(props.onAppLogin)}>
         <LoginButton>{'로그인'}</LoginButton>
       </LoginButtonWrapper>
-      <SocialLogin />
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('SignUp');
+        }}>
+        <SignUpWrapper>
+          <SignUp>{'이메일로 회원가입'}</SignUp>
+        </SignUpWrapper>
+      </TouchableOpacity>
+      {/* <SocialLogin /> */}
     </Wrapper>
   );
 };
-export default MainLoginPageUi;
+export default MainLoginUi;

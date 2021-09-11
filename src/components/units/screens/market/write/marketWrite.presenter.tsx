@@ -33,7 +33,7 @@ const MarketWriteUI = (props) => {
           </AddImageWrapper>
           <Controller
             control={props.ccontrol}
-            name={}
+            name="market"
             render={({field: {onChange, value, onBlur}}) => {
               <InputWrapper>
                 <TitleInput placeholder="글 제목을 입력해주세요" />

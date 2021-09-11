@@ -15,7 +15,7 @@ import {
   Wrapper,
 } from './myPage.style';
 import Icon from 'react-native-vector-icons/Ionicons';
-const MyPageUI = () => {
+const MyPageUI = (props: any) => {
   return (
     <>
       <Container>
@@ -31,7 +31,7 @@ const MyPageUI = () => {
               </UserImage>
               <UserName>유저이름</UserName>
             </UserInfoLeftWrapper>
-            <UserInfoRightWrapper>
+            <UserInfoRightWrapper onPress={props.onPressLogout}>
               <UserInfoEdit>내 정보 수정</UserInfoEdit>
             </UserInfoRightWrapper>
           </UserInfoWrapper>

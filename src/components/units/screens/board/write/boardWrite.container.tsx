@@ -12,7 +12,6 @@ const BoardWrite = () => {
     formState: {errors},
   } = useForm({mode: 'onChange'});
 
-  
-  return <BoardWriteUI />;
+  return <BoardWriteUI handleSubmit={handleSubmit} control={control} />;
 };
 export default BoardWrite;
