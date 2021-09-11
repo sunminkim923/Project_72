@@ -1,4 +1,15 @@
 import styled from 'styled-components/native';
+export const ModalWrapper = styled.View`
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+`;
+export const ModalView = styled.View`
+  width: 300px;
+  height: 300px;
+  background-color: gray;
+`;
 export const Container = styled.SafeAreaView``;
 export const Wrapper = styled.ScrollView``;
 export const TitleWrapper = styled.View`
@@ -33,6 +44,10 @@ export const AddImageText = styled.Text`
 export const InputWrapper = styled.View`
   padding: 30px;
 `;
+export const ErrorText = styled.Text`
+  font-size: 10px;
+  color: red;
+`;
 export const TitleInput = styled.TextInput`
   border-bottom-width: 1.5px;
   border-bottom-color: #e0e0e0;
@@ -41,12 +56,18 @@ export const PriceInput = styled.TextInput`
   border-bottom-width: 1.5px;
   border-bottom-color: #e0e0e0;
 `;
-export const AddressInput = styled.TextInput`
+export const AddressInput = styled.TouchableOpacity`
+  padding: 15px 3px;
+  flex-direction: row;
+  justify-content: space-between;
   border-bottom-width: 1.5px;
   border-bottom-color: #e0e0e0;
 `;
+export const Address = styled.Text`
+  color: #999;
+`;
 export const ContentsInput = styled.TextInput``;
-export const SubmitButton = styled.View`
+export const SubmitButton = styled.TouchableOpacity`
   margin: 30px;
   height: 55px;
   background-color: #26eba6;
