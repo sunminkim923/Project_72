@@ -6,21 +6,32 @@ import {useForm} from 'react-hook-form';
 import {useContext} from 'react';
 import {GlobalContext} from '../../../../../App';
 import MainBottomTabNavigationPage from '../../../../../pages/navigation/MainBottomTabNavigation';
-import {useApolloClient, useMutation} from '@apollo/client';
+import {useApolloClient, useMutation, useQuery} from '@apollo/client';
 import {
   FETCH_USER_LOGGED_IN,
   LOGIN_USER,
-  LOGIN_USER_WITH_FB,
+  // LOGIN_USER_WITH_FB,
 } from './MainLogin.queries';
 import {Alert} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MainLogin = (props: any) => {
   const {userInfo, setUserInfo} = useContext(GlobalContext);
   const client = useApolloClient();
   const [loggedIn, setLoggedIn] = useState(false);
-
   const [loginUser] = useMutation(LOGIN_USER); // 일반 로그인
-  const [loginUserWithFB] = useMutation(LOGIN_USER_WITH_FB); // 소셜 로그인
+
+  // const [loginUserWithFB] = useMutation(LOGIN_USER_WITH_FB); // 소셜 로그인
+  // const {data} = useQuery(FETCH_USER_LOGGED_IN);
+  // const aaa = async () => {
+  //   await AsyncStorage.setItem('aaa', 'bbb');
+  // };
+  // aaa();
+  // const test = async () => {
+  //   const result = await AsyncStorage.getItem('accessToken');
+  //   console.log(result);
+  // };
+  // test();
 
   const onAppLogin = async (data: any) => {
     try {
@@ -35,21 +46,25 @@ const MainLogin = (props: any) => {
           },
         },
       });
-      setUserInfo(resultUser.data.fetchUserLoggedIn, 'asdf');
+      AsyncStorage.setItem(
+        'accessToken',
+        result.data.loginUser.accessToken || '',
+      );
+
+      console.log(JSON.stringify(resultUser.data.fetchUserLoggedIn));
+      console.log(resultUser.data.fetchUserLoggedIn);
+      setUserInfo(resultUser.data.fetchUserLoggedIn);
       Alert.alert('로그인 완료');
+      props.navigation.navigate('홈');
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const {
-    handleSubmit,
-    control,
-    formState: {errors},
-  } = useForm({
+  const {handleSubmit, control} = useForm({
     defaultValues: {
-      Email: '',
-      Password: '',
+      email: '',
+      password: '',
     },
   });
 
@@ -64,17 +79,17 @@ const MainLogin = (props: any) => {
   // }, []);
 
   if (loggedIn) return null;
-  if (!userInfo) {
-    return (
-      <MainLoginUi
-        navigation={props.navigation}
-        onAppLogin={onAppLogin}
-        control={control}
-        loggedIn={loggedIn}
-        handleSubmit={handleSubmit}
-      />
-    );
-  }
-  return <MainBottomTabNavigationPage />;
+  // if (!data) {
+  return (
+    <MainLoginUi
+      navigation={props.navigation}
+      onAppLogin={onAppLogin}
+      control={control}
+      loggedIn={loggedIn}
+      handleSubmit={handleSubmit}
+    />
+  );
+  // }
+  // return <MainBottomTabNavigationPage />;
 };
 export default MainLogin;

@@ -13,7 +13,7 @@ const client = new ApolloClient({
 export const GlobalContext = createContext({});
 
 function App() {
-  const [acessToken, setAccessToken] = useState();
+  const [acessToken, setAccessToken] = useState('');
   const [userInfo, setUserInfo] = useState(false);
 
   const value = {

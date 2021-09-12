@@ -4,13 +4,9 @@ import {useForm} from 'react-hook-form';
 import SignUpPageUI from './SignUp.presenter';
 import {CREATE_USER} from './SignUp.queries';
 
-const SignUpPage = (navigation: any) => {
+const SignUpPage = (props: any) => {
   const [createUser] = useMutation(CREATE_USER);
-  const {
-    handleSubmit,
-    control,
-    formState: {errors},
-  } = useForm({
+  const {handleSubmit, control} = useForm({
     defaultValues: {
       name: '',
       email: '',
@@ -30,14 +26,14 @@ const SignUpPage = (navigation: any) => {
         },
       });
       console.log('회원가입 완료!!');
-      console.log(result);
+      props.navigation.navigate('Login');
     } catch (error) {
       console.log(error.message);
     }
   };
   return (
     <SignUpPageUI
-      navigation={navigation}
+      navigation={props.navigation}
       handleSubmit={handleSubmit}
       control={control}
       JoinUser={JoinUser}
