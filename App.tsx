@@ -1,5 +1,10 @@
 import * as React from 'react';
-import {ApolloClient, ApolloLink, ApolloProvider, InMemoryCache} from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  InMemoryCache,
+} from '@apollo/client';
 import MainBottomTabNavigationPage from './pages/navigation/MainBottomTabNavigation';
 import {useState, createContext} from 'react';
 import StartPageStackNavigationPage from './pages/navigation/StartPageStackNavigation';
