@@ -11,7 +11,7 @@ import {
   SignUpWrapper,
   SignUp,
 } from './MainLogin.style';
-// import SocialLogin from './socialLogin/socialLogin.container'; // 소셜 로그아웃시 문제 생겨서 잠시 주석
+import SocialLogin from './socialLogin/socialLogin.container'; // 소셜 로그아웃시 문제 생겨서 잠시 주석
 
 const MainLoginUi = (props: any) => {
   return (
@@ -49,6 +49,7 @@ const MainLoginUi = (props: any) => {
       <LoginButtonWrapper onPress={props.handleSubmit(props.onAppLogin)}>
         <LoginButton>{'로그인'}</LoginButton>
       </LoginButtonWrapper>
+      <SocialLogin />
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('SignUp');
@@ -57,7 +58,6 @@ const MainLoginUi = (props: any) => {
           <SignUp>{'이메일로 회원가입'}</SignUp>
         </SignUpWrapper>
       </TouchableOpacity>
-      {/* <SocialLogin /> */}
     </Wrapper>
   );
 };
