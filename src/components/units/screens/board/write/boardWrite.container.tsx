@@ -3,11 +3,8 @@ import {useState} from 'react';
 import {createContext} from 'react';
 import {useForm} from 'react-hook-form';
 import BoardWriteUI from './boardWirte.presenter';
-// import {firebase} from '@react-native-firebase/firestore';
-import database from '@react-native-firebase/database';
 import {useMutation} from '@apollo/client';
 import {CREATE_BOARD} from './boardWrite.queries';
-import {getDate} from '../../../../commons/utils';
 import {useContext} from 'react';
 import {GlobalContext} from '../../../../../../App';
 import {Alert} from 'react-native';
@@ -36,7 +33,7 @@ const BoardWrite = (props: any) => {
       });
       console.log(result);
       Alert.alert('게시물이 등록되었습니다.');
-      props.navitation.navitgate('Write');
+      props.navigation.navigate('List');
     } catch (error) {
       console.log(error.message);
     }
