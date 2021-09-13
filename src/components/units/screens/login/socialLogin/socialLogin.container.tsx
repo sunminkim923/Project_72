@@ -11,20 +11,17 @@ import auth from '@react-native-firebase/auth';
 
 const SocialLogin = () => {
   const [loggedIn, setLoggedIn] = useState(true);
-  // const {setIdToken, userInfo, setUserInfo} = useContext(GlobalContext);
+  const [userInfo, setuserInfo] = useState([]);
 
   const onGoogleLogin = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const {idToken} = await GoogleSignin.signIn();
-      console.log(idToken);
-      // console.log(user);
-      setLoggedIn(false);
+      setLoggedIn(true);
 
       const credential = auth.GoogleAuthProvider.credential(idToken);
       await auth().signInWithCredential(credential);
-      // setUserInfo(userInfo);
-      Alert.alert('로그인되었습니다.');
+      Alert.alert('소셜 로그인.');
     } catch (error) {
       console.log(error.code);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -44,17 +41,22 @@ const SocialLogin = () => {
 
   useEffect(() => {
     GoogleSignin.configure({
+      scopes: ['email'],
       webClientId:
         '284614458896-r1bkvs0cjjb8act9ssvgj97nj76s7h9f.apps.googleusercontent.com',
       offlineAccess: true,
+      hostedDomain: '',
+      accountName: '',
     });
   }, []);
 
   const onGoogleLogout = async () => {
     try {
       await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut().then(() => 'logout');
-      setLoggedIn(true);
+      await GoogleSignin.signOut().then(() =>
+        Alert.alert('Your are signed out!'),
+      );
+      setLoggedIn(false);
       // setUserInfo([]);
     } catch (error) {
       console.log(error);

@@ -43,7 +43,7 @@ export const LoginButton = styled.Text`
   font-size: 18px;
   font-weight: bold;
 `;
-export const SignUpWrapper = styled.View`
+export const SignUpWrapper = styled.TouchableOpacity`
   margin: auto;
 `;
 
