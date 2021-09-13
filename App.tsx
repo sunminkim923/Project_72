@@ -1,23 +1,31 @@
 import * as React from 'react';
-import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
+import {ApolloClient, ApolloLink, ApolloProvider, InMemoryCache} from '@apollo/client';
 import MainBottomTabNavigationPage from './pages/navigation/MainBottomTabNavigation';
 import {useState, createContext} from 'react';
 import StartPageStackNavigationPage from './pages/navigation/StartPageStackNavigation';
-
-const client = new ApolloClient({
-  uri: 'http://34.68.72.16:4000/graphql',
-  // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
-  cache: new InMemoryCache(),
-});
+import {createUploadLink} from 'apollo-upload-client';
 
 export const GlobalContext = createContext({});
 
 function App() {
-  const [acessToken, setAccessToken] = useState('');
+  const [accessToken, setAccessToken] = useState('');
   const [userInfo, setUserInfo] = useState(false);
 
+  const uploadLink = createUploadLink({
+    uri: 'http://34.68.72.16:4000/graphql',
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+      // ${(typeof window !== 'undefined' && localStorage.getItem('accessToken'))||''}
+    },
+    credentials: 'include',
+  });
+  const client = new ApolloClient({
+    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    cache: new InMemoryCache(),
+  });
+
   const value = {
-    acessToken: acessToken,
+    accessToken: accessToken,
     setAccessToken: setAccessToken,
     userInfo: userInfo,
     setUserInfo: setUserInfo,
