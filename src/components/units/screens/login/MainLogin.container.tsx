@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MainBottomTabNavigationPage from '../../../../../pages/navigation/MainBottomTabNavigation';
 
 const MainLogin = (props: any) => {
-  const {userInfo, setUserInfo} = useContext(GlobalContext);
+  const {setUserInfo, setAccessToken} = useContext(GlobalContext);
   const client = useApolloClient();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loginUser] = useMutation(LOGIN_USER); // 일반 로그인
@@ -26,11 +26,11 @@ const MainLogin = (props: any) => {
   //   await AsyncStorage.setItem('aaa', 'bbb');
   // };
   // aaa();
-  // const test = async () => {
-  //   const result = await AsyncStorage.getItem('accessToken');
-  //   console.log(result);
-  // };
-  // test();
+  const test = async () => {
+    const result = await AsyncStorage.getItem('accessToken');
+    console.log(result);
+  };
+  test();
 
   const onAppLogin = async (data: any) => {
     try {
@@ -49,7 +49,7 @@ const MainLogin = (props: any) => {
         'accessToken',
         result.data.loginUser.accessToken || '',
       );
-
+      setAccessToken(result.data?.loginUser.accessToken);
       setUserInfo(resultUser.data.fetchUserLoggedIn);
       Alert.alert('로그인 완료');
       props.navigation.navigate('홈');
