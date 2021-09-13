@@ -27,8 +27,7 @@ const MarketWriteUI = (props) => {
     <>
       <Modal visible={props.modalVisible}>
         <ModalWrapper>
-          <ModalView>
-          </ModalView>
+          <ModalView></ModalView>
         </ModalWrapper>
       </Modal>
       <Container>

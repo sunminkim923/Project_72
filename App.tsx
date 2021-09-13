@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  ApolloClient,
-  ApolloProvider,
-  ApolloLink,
-  InMemoryCache,
-} from '@apollo/client';
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import MainBottomTabNavigationPage from './pages/navigation/MainBottomTabNavigation';
 import {useState, createContext} from 'react';
 import StartPageStackNavigationPage from './pages/navigation/StartPageStackNavigation';
@@ -18,12 +13,12 @@ const client = new ApolloClient({
 export const GlobalContext = createContext({});
 
 function App() {
-  const [idToken, setIdToken] = useState();
+  const [acessToken, setAccessToken] = useState('');
   const [userInfo, setUserInfo] = useState(false);
 
   const value = {
-    idToken: idToken,
-    setIdToken: setIdToken,
+    acessToken: acessToken,
+    setAccessToken: setAccessToken,
     userInfo: userInfo,
     setUserInfo: setUserInfo,
   };

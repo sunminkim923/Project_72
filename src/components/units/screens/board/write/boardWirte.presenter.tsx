@@ -51,7 +51,7 @@ const BoardWriteUI = (props: any) => {
               <Icon size={40} color={'#fff'} name="ios-add" />
             </AddImageButton>
           </AddImageWrapper>
-          <SubmitButton>
+          <SubmitButton onPress={props.handleSubmit(props.onBoardSubmit)}>
             <Icon color={'#fff'} size={20} name="brush" />
             <ButtonText>글 등록하기</ButtonText>
           </SubmitButton>
