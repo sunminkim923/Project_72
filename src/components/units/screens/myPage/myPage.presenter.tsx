@@ -32,7 +32,7 @@ const MyPageUI = (props: any) => {
               <UserName>유저이름</UserName>
             </UserInfoLeftWrapper>
             <UserInfoRightWrapper onPress={props.onPressLogout}>
-              <UserInfoEdit>내 정보 수정</UserInfoEdit>
+              <UserInfoEdit>로그아웃</UserInfoEdit>
             </UserInfoRightWrapper>
           </UserInfoWrapper>
 
