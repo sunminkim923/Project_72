@@ -3,14 +3,17 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ChatListScreen from '../../screens/chat/list/chatListScreen';
 import AddRoomScreen from '../../screens/chat/addRoom/addRoonScreen';
 import {IconButton} from 'react-native-paper';
+import {Provider as PaperProvider} from 'react-native-paper';
 import RoomScreen from '../../screens/chat/room/chatRoomScreen';
 
 const ChatAppStack = createNativeStackNavigator();
 const ModalStack = createNativeStackNavigator();
 
-function ChatApp() {
+export default function ChatStackNavigationPage() {
   return (
-    <ChatAppStack.Navigator
+    <ModalStack.Navigator
+      mode="modal"
+      headerMode="none"
       screenOptions={{
         headerStyle: {
           backgroundColor: '#6646ee',
@@ -20,8 +23,8 @@ function ChatApp() {
           fontSize: 22,
         },
       }}>
-      <ChatAppStack.Screen
-        name="Home"
+      <ModalStack.Screen
+        name="채팅리스트"
         component={ChatListScreen}
         options={({navigation}) => ({
           headerRight: () => (
@@ -34,27 +37,14 @@ function ChatApp() {
           ),
         })}
       />
-      <ChatAppStack.Screen
+      <ModalStack.Screen name="AddRoom" component={AddRoomScreen} />
+      <ModalStack.Screen
         name="Room"
         component={RoomScreen}
         options={({route}) => ({
           title: route.params.thread.name,
         })}
       />
-    </ChatAppStack.Navigator>
-  );
-}
-
-export default function HomeStack() {
-  return (
-    <ModalStack.Navigator
-      mode="modal"
-      headerMode="none"
-      screenOptions={() => ({headerShown: false})}>
-      <ModalStack.Screen name="ChatApp" component={ChatApp} />
-      <ModalStack.Screen name="AddRoom" component={AddRoomScreen} />
-      <ModalStack.Screen name="ChatList" component={ChatListScreen} />
-      <ModalStack.Screen name="ChatRoom" component={RoomScreen} />
     </ModalStack.Navigator>
   );
 }

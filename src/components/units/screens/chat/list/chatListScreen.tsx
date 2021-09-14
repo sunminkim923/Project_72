@@ -1,23 +1,13 @@
-// import React from 'react'
-// import ChatListUI from './chatListPresenter'
-// const ChatList = () => {
-//     return(
-//         <ChatListUI/>
-//     )
-// }
-// export default ChatList
-
 import React, {useContext, useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Title, List, Divider} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
-import FormButton from '../../../../commons/formButton/formButton';
-// import {AuthContext} from '../navigation/AuthProvider';
 import Loading from '../../../../commons/loading/loading';
-import useStatusBar from '../../../../commons/statusBar/statusBar';
+import {GlobalContext} from '../../../../../../App';
 
 export default function ChatListScreen({navigation}) {
-  useStatusBar('light-content');
+  const {userInfo} = useContext(GlobalContext);
+
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +19,7 @@ export default function ChatListScreen({navigation}) {
         const threads = querySnapshot.docs.map((documentSnapshot) => {
           return {
             _id: documentSnapshot.id,
-            //give defaults
+            // give defaults
             name: '',
             latestMessage: {
               text: '',
@@ -37,11 +27,17 @@ export default function ChatListScreen({navigation}) {
             ...documentSnapshot.data(),
           };
         });
+
         setThreads(threads);
+
         if (loading) {
           setLoading(false);
         }
       });
+
+    /**
+     * unsubscribe listener
+     */
     return () => unsubscribe();
   }, []);
 
@@ -50,11 +46,10 @@ export default function ChatListScreen({navigation}) {
   }
 
   return (
-    <View style={styles.contatiner}>
+    <View style={styles.container}>
       <FlatList
-        key={threads}
         data={threads}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         ItemSeparatorComponent={() => <Divider />}
         renderItem={({item}) => (
           <TouchableOpacity
@@ -66,7 +61,7 @@ export default function ChatListScreen({navigation}) {
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={1}
-              // description={item.latestMessage.text}
+              description={item.latestMessage.text}
             />
           </TouchableOpacity>
         )}
@@ -76,7 +71,7 @@ export default function ChatListScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  contatiner: {
+  container: {
     backgroundColor: '#f5f5f5',
     flex: 1,
   },
