@@ -6,15 +6,16 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import MainBottomTabNavigationPage from './pages/navigation/MainBottomTabNavigation';
-import {useState, createContext} from 'react';
+import {useState, createContext, useEffect} from 'react';
 import StartPageStackNavigationPage from './pages/navigation/StartPageStackNavigation';
 import {createUploadLink} from 'apollo-upload-client';
-import {useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LandingPage from './pages/screens/landing';
 
 export const GlobalContext = createContext({});
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
   const [userInfo, setUserInfo] = useState({});
 
@@ -45,19 +46,25 @@ function App() {
     userInfo: userInfo,
     setUserInfo: setUserInfo,
   };
+
   return (
     <>
       <GlobalContext.Provider value={value}>
         <ApolloProvider client={client}>
-          {userInfo ? (
-            <>
-              <MainBottomTabNavigationPage />
-            </>
-          ) : (
-            <>
-              <StartPageStackNavigationPage />
-            </>
-          )}
+          {
+            isLoading && <LandingPage setIsLoading={setIsLoading} />
+            //isLoading && fadeinview
+          }
+          {!isLoading &&
+            (userInfo ? (
+              <>
+                <MainBottomTabNavigationPage />
+              </>
+            ) : (
+              <>
+                <StartPageStackNavigationPage />
+              </>
+            ))}
         </ApolloProvider>
       </GlobalContext.Provider>
     </>

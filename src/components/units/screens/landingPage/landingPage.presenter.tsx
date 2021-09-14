@@ -10,7 +10,9 @@ const FadeInView = (props: any) => {
       toValue: 1,
       duration: 5000,
       useNativeDriver: true,
-    }).start();
+    }).start(() => {
+      props.setIsLoading(false);
+    });
   }, [fadeAnim]);
 
   return (
@@ -23,10 +25,10 @@ const FadeInView = (props: any) => {
     </Animated.View>
   );
 };
-export default () => {
+export default (props) => {
   return (
     <Container>
-      <FadeInView>
+      <FadeInView setIsLoading={props.setIsLoading}>
         <Wrapper source={require('../../../../imgs/landing.png')} />
       </FadeInView>
     </Container>
