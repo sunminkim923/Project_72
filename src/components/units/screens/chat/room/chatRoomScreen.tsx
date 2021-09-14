@@ -1,37 +1,22 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
+import {IconButton} from 'react-native-paper';
 import {
   GiftedChat,
   Bubble,
   Send,
   SystemMessage,
 } from 'react-native-gifted-chat';
-import {IconButton} from 'react-native-paper';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-// import {AuthContext} from '../navigation/AuthProvider';
+import {GlobalContext} from '../../../../../../App';
 import firestore from '@react-native-firebase/firestore';
 
 export default function RoomScreen({route}) {
-  // const {user} = useContext(AuthContext);
-  // const currentUser = user.toJSON();
+  const {userInfo} = useContext(GlobalContext);
+  //   console.log('채팅방', userInfo);
+
   const {thread} = route.params;
 
   const [messages, setMessages] = useState([]);
-  //   {
-  //     _id: 0,
-  //     text: 'New room created',
-  //     createdAt: new Date().getTime(),
-  //     system: true,
-  //   },
-  //   {
-  //     _id: 1,
-  //     text: 'Hello',
-  //     createdAt: new Date().getTime(),
-  //     user: {
-  //       _id: 2,
-  //       name: 'Test User',
-  //     },
-  //   },
-  // ]);
 
   async function handleSend(messages) {
     const text = messages[0].text;
@@ -44,8 +29,8 @@ export default function RoomScreen({route}) {
         text,
         createdAt: new Date().getTime(),
         user: {
-          _id: 'test01',
-          email: 'test@test.com',
+          _id: userInfo.uid,
+          email: userInfo.email,
         },
       });
 
@@ -82,9 +67,8 @@ export default function RoomScreen({route}) {
 
           if (!firebaseData.system) {
             data.user = {
-              name: 'test02',
-              // ...firebaseData.user,
-              // name: firebaseData.user.email,
+              ...firebaseData.user,
+              name: userInfo.displayName,
             };
           }
 
@@ -93,7 +77,7 @@ export default function RoomScreen({route}) {
 
         setMessages(messages);
       });
-    // Stop listening for updates whenever the component unmounts
+
     return () => messagesListener();
   }, []);
 
@@ -125,14 +109,6 @@ export default function RoomScreen({route}) {
     );
   }
 
-  function scrollToBottomComponent() {
-    return (
-      <View style={styles.bottomComponentContainer}>
-        <IconButton icon="chevron-double-down" size={36} color="#6646ee" />
-      </View>
-    );
-  }
-
   function renderLoading() {
     return (
       <View style={styles.loadingContainer}>
@@ -155,14 +131,12 @@ export default function RoomScreen({route}) {
     <GiftedChat
       messages={messages}
       onSend={handleSend}
-      user={{_id: 'test02'}}
+      user={{_id: userInfo.uid}}
       renderBubble={renderBubble}
-      placeholder="메세지를 입력해주세요"
+      placeholder="메세지를 입력해주세요."
       showUserAvatar
       alwaysShowSend
       renderSend={renderSend}
-      scrollToBottom
-      scrollToBottomComponent={scrollToBottomComponent}
       renderLoading={renderLoading}
       renderSystemMessage={renderSystemMessage}
     />
@@ -171,10 +145,6 @@ export default function RoomScreen({route}) {
 
 const styles = StyleSheet.create({
   sendingContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomComponentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },

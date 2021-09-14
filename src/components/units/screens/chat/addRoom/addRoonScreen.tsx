@@ -1,35 +1,37 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {IconButton, Title} from 'react-native-paper';
-import FormInput from '../../../../commons/formInput/formInput';
 import FormButton from '../../../../commons/formButton/formButton';
+import FormInput from '../../../../commons/formInput/formInput';
 import firestore from '@react-native-firebase/firestore';
-import useStatusBar from '../../../../commons/statusBar/statusBar';
+import {GlobalContext} from '../../../../../../App';
 
 export default function AddRoomScreen({navigation}) {
-  useStatusBar('dark-content');
   const [roomName, setRoomName] = useState('');
 
-  // ...Firestore query will come here later
+  const {userInfo} = useContext(GlobalContext);
+
+  // console.log('회원', userInfo);
 
   function handleButtonPress() {
     if (roomName.length > 0) {
       firestore()
         .collection('THREADS')
         .add({
-          name: roomName,
+          title: roomName,
+          name: userInfo.displayName,
           latestMessage: {
-            text: `You have join the room ${roomName}`,
+            text: ` ${userInfo.displayName} 님과 연결되었습니다.`,
             createdAt: new Date().getTime(),
           },
         })
         .then((docRef) => {
           docRef.collection('MESSAGES').add({
-            text: `You have joined the room ${roomName}`,
+            text: ` ${userInfo.displayName} 님과 연결되었습니다.`,
             createdAt: new Date().getTime(),
             system: true,
           });
-          navigation.navigate('ChatList');
+          navigation.navigate('채팅리스트');
         });
     }
   }
@@ -45,7 +47,7 @@ export default function AddRoomScreen({navigation}) {
         />
       </View>
       <View style={styles.innerContainer}>
-        <Title style={styles.title}> Create a new chat room </Title>
+        <Title style={styles.title}>Create a new chat room</Title>
         <FormInput
           labelName="Room Name"
           value={roomName}
@@ -70,8 +72,8 @@ const styles = StyleSheet.create({
   },
   closeButtonContainer: {
     position: 'absolute',
-    top: 0,
-    right: 5,
+    top: 30,
+    right: 0,
     zIndex: 1,
   },
   innerContainer: {
