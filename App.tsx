@@ -20,12 +20,15 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    if (AsyncStorage.getItem('accessToken')) {
-      setAccessToken(accessToken);
-    }
-    if (AsyncStorage.getItem('userInfo')) {
-      setUserInfo(AsyncStorage.getItem('userInfo'));
-    }
+    const getToken = async () => {
+      if (AsyncStorage.getItem('accessToken')) {
+        setAccessToken(String(await AsyncStorage.getItem('accessToken')));
+      }
+      if (AsyncStorage.getItem('userInfo')) {
+        setUserInfo(AsyncStorage.getItem('userInfo'));
+      }
+    };
+    getToken();
   }, []);
 
   const uploadLink = createUploadLink({
