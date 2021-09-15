@@ -17,7 +17,6 @@ const MarketListUI = (props) => {
   const state = {
     data: props.data?.fetchUseditems,
   };
-  console.log(state);
   const renderItem = ({item}) => (
     <TouchableOpacity
       key={item._id}
@@ -39,8 +38,6 @@ const MarketListUI = (props) => {
     </TouchableOpacity>
   );
 
-  console.log(props.hasMore);
-
   return (
     <>
       <Container>
@@ -50,26 +47,6 @@ const MarketListUI = (props) => {
           onEndReached={props.hasMore && props.onLoadMore}
           onEndReachedThreshold={1}
         />
-        {/* {props.data?.fetchUseditems.map((data, index) => (
-          <TouchableOpacity
-            key={data._id + index}
-            onPress={() => {
-              props.navigation.navigate('Detail');
-            }}>
-            <Wrapper>
-              <ImageWrapper></ImageWrapper>
-              <ContentsWrapper>
-                <ItemTitle>{data.name}</ItemTitle>
-                <ItemAddress>
-                  {data.useditemAddress?.address}
-                  {data.useditemAddress?.addressDetail}
-                </ItemAddress>
-                <ItemPrice>{data.price}원</ItemPrice>
-                <ItemLike>좋아요</ItemLike>
-              </ContentsWrapper>
-            </Wrapper>
-          </TouchableOpacity>
-        ))} */}
       </Container>
 
       <ButtonWrapper>

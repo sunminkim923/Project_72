@@ -20,7 +20,6 @@ const MarketWrite = (props) => {
     },
   });
   const onSubmit = async (data) => {
-    console.log('data:', data);
     try {
       await createUseditem({
         variables: {

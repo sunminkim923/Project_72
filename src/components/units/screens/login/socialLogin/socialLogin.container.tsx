@@ -27,9 +27,6 @@ const SocialLogin = () => {
       const credential = auth.GoogleAuthProvider.credential(idToken);
       const googleUser = await auth().signInWithCredential(credential);
 
-      // console.log(googleUser.additionalUserInfo?.profile?.email); // 구글로그인에서 이메일 가져오기
-      // console.log(googleUser.additionalUserInfo?.profile?.name); // 구글로그인에서 이름 가져오기
-
       const result = await loginUserWithFB({
         variables: {
           name: googleUser.additionalUserInfo?.profile?.name,

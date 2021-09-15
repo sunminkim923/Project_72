@@ -12,14 +12,6 @@ const BoardList = (props: any) => {
     variables: {page: page},
   });
 
-  console.log(data, 'date');
-
-  // const onPressDetail = (event: any) => {
-
-  //   // props.navigation.navigate();
-  //   // console.log(event.traget, 'event');
-  // };
-
   return (
     <BoardListUI
       data={data}
