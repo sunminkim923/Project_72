@@ -14,37 +14,42 @@ import {
 } from './marketList.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 const MarketListUI = (props) => {
-  console.log(props.data)
+  const state = {
+    data: props.data?.fetchUseditems,
+  };
+  console.log(state);
   const renderItem = ({item}) => (
-    <Wrapper>
-      <ImageWrapper></ImageWrapper>
-      <ContentsWrapper>
-        <ItemTitle>{item.name}</ItemTitle>
-        <ItemAddress>
-          {item.useditemAddress?.address}
-          {item.useditemAddress?.addressDetail}
-        </ItemAddress>
-        <ItemPrice>{item.price}원</ItemPrice>
-        <ItemLike>좋아요</ItemLike>
-      </ContentsWrapper>
-    </Wrapper>
+    <TouchableOpacity
+      key={item._id}
+      onPress={() => {
+        props.navigation.navigate('Detail', {item});
+      }}>
+      <Wrapper>
+        <ImageWrapper></ImageWrapper>
+        <ContentsWrapper>
+          <ItemTitle>{item.name}</ItemTitle>
+          <ItemAddress>
+            {item.useditemAddress?.address}
+            {item.useditemAddress?.addressDetail}
+          </ItemAddress>
+          <ItemPrice>{item.price}원</ItemPrice>
+          <ItemLike>좋아요</ItemLike>
+        </ContentsWrapper>
+      </Wrapper>
+    </TouchableOpacity>
   );
+
+  console.log(props.hasMore);
 
   return (
     <>
       <Container>
-        <TouchableOpacity
-          // key={item._id}
-          onPress={() => {
-            props.navigation.navigate('Detail');
-          }}>
-          <FlatList
-            data={props.data}
-            renderItem={renderItem}
-            // extraData={}
-            keyExtractor={(item) => item.id}
-          />
-        </TouchableOpacity>
+        <FlatList
+          data={state.data}
+          renderItem={renderItem}
+          onEndReached={props.hasMore && props.onLoadMore}
+          onEndReachedThreshold={1}
+        />
         {/* {props.data?.fetchUseditems.map((data, index) => (
           <TouchableOpacity
             key={data._id + index}
