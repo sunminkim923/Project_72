@@ -12,7 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function RoomScreen({route}) {
   const {userInfo} = useContext(GlobalContext);
-  //   console.log('채팅방', userInfo);
+  console.log('채팅방', userInfo);
 
   const {thread} = route.params;
 
@@ -29,7 +29,7 @@ export default function RoomScreen({route}) {
         text,
         createdAt: new Date().getTime(),
         user: {
-          _id: userInfo.uid,
+          _id: userInfo._id,
           email: userInfo.email,
         },
       });
@@ -68,7 +68,7 @@ export default function RoomScreen({route}) {
           if (!firebaseData.system) {
             data.user = {
               ...firebaseData.user,
-              name: userInfo.displayName,
+              name: userInfo.name,
             };
           }
 
@@ -131,7 +131,7 @@ export default function RoomScreen({route}) {
     <GiftedChat
       messages={messages}
       onSend={handleSend}
-      user={{_id: userInfo.uid}}
+      user={{_id: userInfo._id}}
       renderBubble={renderBubble}
       placeholder="메세지를 입력해주세요."
       showUserAvatar

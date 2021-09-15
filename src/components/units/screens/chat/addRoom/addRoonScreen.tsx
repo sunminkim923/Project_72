@@ -19,15 +19,15 @@ export default function AddRoomScreen({navigation}) {
         .collection('THREADS')
         .add({
           title: roomName,
-          name: userInfo.displayName,
+          name: userInfo.name,
           latestMessage: {
-            text: ` ${userInfo.displayName} 님과 연결되었습니다.`,
+            text: ` ${userInfo.name} 님과 연결되었습니다.`,
             createdAt: new Date().getTime(),
           },
         })
         .then((docRef) => {
           docRef.collection('MESSAGES').add({
-            text: ` ${userInfo.displayName} 님과 연결되었습니다.`,
+            text: ` ${userInfo.name} 님과 연결되었습니다.`,
             createdAt: new Date().getTime(),
             system: true,
           });
