@@ -45,7 +45,7 @@ const SocialLogin = () => {
           },
         },
       });
-      AsyncStorage.setItem(
+      await AsyncStorage.setItem(
         'accessToken',
         result.data.loginUserWithFB.accessToken || '',
       );
