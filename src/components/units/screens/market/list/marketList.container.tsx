@@ -7,14 +7,11 @@ const MarketList = (props: any) => {
   const {data, fetchMore} = useQuery(FETCH_USED_ITEMS);
   const [hasMore, setHasMore] = useState(true);
   const onLoadMore = () => {
-    console.log('nnn', data?.fetchUseditems.length);
-    console.log('page', Math.ceil(data?.fetchUseditems.length / 10) + 1);
     fetchMore({
       variables: {
         page: Math.ceil(data?.fetchUseditems.length / 10) + 1,
       },
       updateQuery: (prev, {fetchMoreResult}) => {
-        console.log('ffffffff', fetchMoreResult);
         if (!fetchMoreResult.fetchUseditems.length) setHasMore(false);
         return {
           fetchUseditems: [

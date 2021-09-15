@@ -11,8 +11,6 @@ export default function AddRoomScreen({navigation}) {
 
   const {userInfo} = useContext(GlobalContext);
 
-  // console.log('회원', userInfo);
-
   function handleButtonPress() {
     if (roomName.length > 0) {
       firestore()

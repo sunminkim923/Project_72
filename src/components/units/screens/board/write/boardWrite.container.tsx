@@ -20,7 +20,6 @@ const BoardWrite = (props: any) => {
   const {userInfo} = useContext(GlobalContext);
 
   const onBoardSubmit = async (data: any) => {
-    console.log(data);
     try {
       const result = await createBoard({
         variables: {
@@ -32,7 +31,6 @@ const BoardWrite = (props: any) => {
           },
         },
       });
-      console.log(result);
       Alert.alert('게시물이 등록되었습니다.');
       props.navigation.navigate('List');
     } catch (error) {

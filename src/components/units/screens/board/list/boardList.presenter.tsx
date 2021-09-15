@@ -32,7 +32,6 @@ const BoardListUI = (props: any) => {
   return (
     <>
       <Container>
-        {console.log(props)}
         {props.datas?.fetchBoards.map((data: any) => (
           <Wrapper key={uuidv4()}>
             <UserWrapper>
