@@ -5,3 +5,6 @@ export function getDate(data: string) {
 
   return `${yyyy}-${mm}-${dd}`;
 }
+export const priceToString = (price: Number) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};

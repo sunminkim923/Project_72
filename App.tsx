@@ -25,9 +25,10 @@ function App() {
         setAccessToken(String(await AsyncStorage.getItem('accessToken')));
       }
       if (AsyncStorage.getItem('userInfo')) {
-        setUserInfo(String(await AsyncStorage.getItem('userInfo')));
+        setUserInfo(await AsyncStorage.getItem('userInfo'));
       }
     };
+    console.log(userInfo)
     getToken();
   }, []);
 

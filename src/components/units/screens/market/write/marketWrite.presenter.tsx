@@ -71,7 +71,6 @@ const MarketWriteUI = (props) => {
               control={props.control}
               render={({field: {onChange,value}}) => (
                 <AddressWrapper>
-                  {/* <AddressLabel>지역을 선택해주세요</AddressLabel> */}
                   <Address
                     selectedValue={value}
                     onValueChange={(value) => onChange(value)}>
