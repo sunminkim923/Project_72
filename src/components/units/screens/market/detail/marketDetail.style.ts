@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+
 export const Container = styled.ScrollView``;
 export const ItemImage = styled.View`
   height: 240px;
