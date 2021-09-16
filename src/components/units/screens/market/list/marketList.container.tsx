@@ -6,6 +6,7 @@ import {FETCH_USED_ITEMS} from './marketList.queries';
 const MarketList = (props: any) => {
   const {data, fetchMore} = useQuery(FETCH_USED_ITEMS);
   const [hasMore, setHasMore] = useState(true);
+
   const onLoadMore = () => {
     fetchMore({
       variables: {

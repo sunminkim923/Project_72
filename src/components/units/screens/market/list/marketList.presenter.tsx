@@ -13,6 +13,8 @@ import {
   ButtonWrapper,
 } from './marketList.style';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {priceToString} from '../../../../commons/utils';
+
 const MarketListUI = (props) => {
   const state = {
     data: props.data?.fetchUseditems,
@@ -26,13 +28,18 @@ const MarketListUI = (props) => {
       <Wrapper>
         <ImageWrapper></ImageWrapper>
         <ContentsWrapper>
-          <ItemTitle>{item.name}</ItemTitle>
-          <ItemAddress>
-            {item.useditemAddress?.address}
+          <ItemTitle numberOfLines={2} ellipsizeMode="tail">
+            {item.name}
+          </ItemTitle>
+          <ItemAddress numberOfLines={1} ellipsizeMode="tail">
+            {item.useditemAddress?.address}&nbsp;
             {item.useditemAddress?.addressDetail}
           </ItemAddress>
-          <ItemPrice>{item.price}원</ItemPrice>
-          <ItemLike>좋아요</ItemLike>
+          <ItemPrice>{`${priceToString(item.price)}원`}</ItemPrice>
+          <ItemLike>
+            <Icon size={15} color={'#26EBA6'} name="md-paw" />
+            &nbsp; {item.pickedCount}
+          </ItemLike>
         </ContentsWrapper>
       </Wrapper>
     </TouchableOpacity>

@@ -48,7 +48,7 @@ const SocialLogin = () => {
       );
       AsyncStorage.setItem(
         'userInfo',
-        JSON.stringify(resultGoogleUser.data.fetchUserLoggedIn) || '',
+        resultGoogleUser.data.fetchUserLoggedIn || '',
       );
 
       setAccessToken(result.data?.loginUserWithFB.accessToken);
