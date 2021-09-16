@@ -11,13 +11,23 @@ import StartPageStackNavigationPage from './pages/navigation/StartPageStackNavig
 import {createUploadLink} from 'apollo-upload-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LandingPage from './pages/screens/landing';
+import RegistStackNavigationPage from './pages/navigation/RegistStackNavigation';
 
 export const GlobalContext = createContext({});
+
+interface IUserInfo {
+  _id?: string;
+  email?: string;
+  name?: string;
+  petGender?: string;
+  petKinds?: string;
+  petName?: string;
+}
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState<IUserInfo>({});
 
   useEffect(() => {
     const getToken = async () => {
@@ -25,10 +35,13 @@ function App() {
         setAccessToken(String(await AsyncStorage.getItem('accessToken')));
       }
       if (AsyncStorage.getItem('userInfo')) {
-        setUserInfo(await AsyncStorage.getItem('userInfo'));
+
+        setUserInfo(
+          ((await AsyncStorage.getItem('userInfo')) as IUserInfo) || {},
+        );
       }
     };
-    console.log(userInfo)
+    console.log(userInfo);
     getToken();
   }, []);
 
@@ -50,7 +63,6 @@ function App() {
     userInfo: userInfo,
     setUserInfo: setUserInfo,
   };
-
   return (
     <>
       <GlobalContext.Provider value={value}>
@@ -62,7 +74,11 @@ function App() {
           {!isLoading &&
             (userInfo ? (
               <>
-                <MainBottomTabNavigationPage />
+                {userInfo.petName !== null ? (
+                  <MainBottomTabNavigationPage />
+                ) : (
+                  <RegistStackNavigationPage />
+                )}
               </>
             ) : (
               <>

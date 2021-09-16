@@ -10,19 +10,28 @@ import {
   Wrapper,
 } from './registPage03.style';
 import Icon from 'react-native-vector-icons/Ionicons';
-const Regist03UI = () => {
+import {useContext} from 'react';
+import {GlobalContext} from '../../../../../../App';
+
+const Regist03UI = (props: any) => {
+  const {userInfo} = useContext(GlobalContext);
+  console.log('user', userInfo);
+  console.log('last', props.petInfo);
   return (
     <>
       <Container>
         <Wrapper>
           <TitleWrapper>
-            <Title>@@의 대표 사진을 등록해주세요</Title>
+            <Title>대표 사진을 등록해주세요</Title>
           </TitleWrapper>
           <AddImageButton>
             <Icon size={60} color={'#aaa'} name="md-add-sharp" />
           </AddImageButton>
           <ButtonWrapper>
-            <SubmitButton>
+            <SubmitButton
+              onPress={() => {
+                props.onUpdatePetInfo();
+              }}>
               <ButtonText>다 음</ButtonText>
             </SubmitButton>
           </ButtonWrapper>
