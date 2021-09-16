@@ -8,20 +8,17 @@ import {CREATE_BOARD} from './boardWrite.queries';
 import {useContext} from 'react';
 import {GlobalContext} from '../../../../../../App';
 import {Alert} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const BoardContext = createContext({});
 
 const BoardWrite = (props: any) => {
   const [createBoard] = useMutation(CREATE_BOARD);
   const {handleSubmit, control} = useForm({defaultValues: {contents: ''}});
-  const [image, setImage] = useState('');
 
   const {userInfo} = useContext(GlobalContext);
-
   const onBoardSubmit = async (data: any) => {
     try {
-      const result = await createBoard({
+      await createBoard({
         variables: {
           createBoardInput: {
             writer: userInfo.name,

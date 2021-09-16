@@ -16,7 +16,7 @@ const SignUpPage = (props: any) => {
 
   const JoinUser = async (data: any) => {
     try {
-      const result = await createUser({
+      await createUser({
         variables: {
           createUserInput: {
             name: data.name,
