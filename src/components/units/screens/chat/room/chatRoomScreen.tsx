@@ -10,12 +10,12 @@ import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {GlobalContext} from '../../../../../../App';
 import firestore from '@react-native-firebase/firestore';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator;
 
 export default function RoomScreen({route}) {
   const {userInfo} = useContext(GlobalContext);
-  console.log('채팅방', userInfo);
 
   const {thread} = route.params;
 

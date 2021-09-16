@@ -1,26 +1,104 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet, ImageBackground} from 'react-native';
-export default function FinshScreen({navigation}: any) {
-  return (
-    <View style={styles.topWrapper}>
-      <Text style={styles.titleStyle}>산책이 종료되었습니다.</Text>
-      <View>
-        <ImageBackground
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import {Image, Center, NativeBaseProvider, Input} from 'native-base';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+export default function FinshScreen({navigation}) {
+  const [isLike, setIsLike] = useState(false);
+  const [isDisLike, setIsDisLike] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
+  function FinishMap() {
+    return (
+      <View style={styles.imageWrapper}>
+        <Image
+          width={300}
+          height={200}
+          // resizeMode={'contain'}
+          borderRadius={15}
           source={require('../../../../../imgs/course.png')}
-          style={styles.imageWrapper}
+          alt="Alternate Text"
         />
       </View>
-      <Text> </Text>
-    </View>
+    );
+  }
+
+  function onClickLikeButton() {
+    setIsLike(true);
+    setIsDisLike(false);
+  }
+
+  function onClickDislikeButton() {
+    setIsDisLike(true);
+    setIsLike(false);
+  }
+
+  function onClickFinish() {
+    setIsFinish(true);
+    navigation.navigate('채팅리스트');
+  }
+
+  return (
+    <NativeBaseProvider>
+      <View style={styles.topWrapper}>
+        <Text style={styles.titleStyle}>산책이 종료되었습니다.</Text>
+      </View>
+      <Center>
+        <FinishMap />
+      </Center>
+      <View style={styles.bodyWrapper}>
+        <View style={styles.contentsWrapper}>
+          <Text style={styles.highlightText}>홍길동</Text>
+          <Text style={styles.textStyle}> 님과 함께</Text>
+          <Text style={styles.highlightText}>1,029</Text>
+          <Text style={styles.textStyle}> m 를 걸으셨군요!</Text>
+        </View>
+        <View style={styles.contentsWrapper}>
+          <Text style={styles.highlightText}>100</Text>
+          <Text style={styles.textStyle}> Point가 적립되었습니다!</Text>
+        </View>
+        <View style={styles.contentsWrapper}>
+          <Text style={styles.highlightText}>홍길동</Text>
+          <Text style={styles.textStyle}> 님을 평가해주세요!</Text>
+        </View>
+      </View>
+      <View style={styles.buttonWrapper}>
+        <TouchableOpacity onPress={onClickLikeButton}>
+          <Text style={isLike ? styles.likeButtonTrue : styles.likeButton}>
+            좋았어요 <Icon name="thumbs-up-outline" size={20} />
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onClickDislikeButton}>
+          <Text
+            style={isDisLike ? styles.dislikeButtonTrue : styles.dislikeButton}>
+            싫었어요 <Icon name="ios-thumbs-down-outline" size={20} />
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.inputWrapper}>
+        <TextInput style={styles.inputBox} placeholder="한줄평을 남겨주세요!" />
+      </View>
+      <TouchableOpacity
+        style={styles.finishButtonWrapper}
+        onPress={onClickFinish}>
+        <Text style={isFinish ? styles.finishButtonTrue : styles.finishButton}>
+          확인
+        </Text>
+      </TouchableOpacity>
+    </NativeBaseProvider>
   );
 }
 
 const styles = StyleSheet.create({
   topWrapper: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 40,
+    paddingTop: 20,
   },
   titleStyle: {
     fontSize: 20,
@@ -31,11 +109,107 @@ const styles = StyleSheet.create({
     height: 40,
     paddingTop: 6,
     textAlign: 'center',
+    borderWidth: 0.5,
+    borderRadius: 15,
   },
   imageWrapper: {
-    width: 300,
-    height: 150,
-    marginTop: 20,
     borderWidth: 2,
+    borderRadius: 15,
+    marginTop: 20,
+    borderColor: '#26EBA6',
+  },
+  bodyWrapper: {
+    // paddingTop: 10,
+  },
+  contentsWrapper: {
+    flexDirection: 'row',
+    paddingTop: 20,
+    justifyContent: 'center',
+  },
+  highlightText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#26EBA6',
+  },
+  textStyle: {
+    paddingTop: 5,
+    fontSize: 15,
+    justifyContent: 'center',
+  },
+  buttonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  likeButton: {
+    fontSize: 20,
+    marginRight: 10,
+    borderWidth: 1.5,
+    borderRadius: 15,
+    width: 120,
+    textAlign: 'center',
+  },
+  likeButtonTrue: {
+    fontSize: 20,
+    marginRight: 10,
+    borderWidth: 1.5,
+    borderRadius: 15,
+    width: 120,
+    textAlign: 'center',
+    backgroundColor: '#26EBA6',
+  },
+  dislikeButton: {
+    fontSize: 20,
+    marginLeft: 10,
+    borderWidth: 1.5,
+    borderRadius: 15,
+    width: 120,
+    textAlign: 'center',
+  },
+  dislikeButtonTrue: {
+    fontSize: 20,
+    marginLeft: 10,
+    borderWidth: 1.5,
+    borderRadius: 15,
+    width: 120,
+    textAlign: 'center',
+    backgroundColor: '#26EBA6',
+  },
+  inputWrapper: {
+    alignItems: 'center',
+  },
+  inputBox: {
+    marginTop: 20,
+    borderWidth: 0,
+    borderBottomWidth: 1.5,
+    borderColor: 'gray',
+    width: 300,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  finishButtonWrapper: {
+    paddingTop: 30,
+    alignItems: 'center',
+  },
+  finishButton: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    borderWidth: 1.5,
+    width: 120,
+    textAlign: 'center',
+    height: 35,
+    paddingTop: 3,
+    borderRadius: 15,
+  },
+  finishButtonTrue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    borderWidth: 1.5,
+    width: 120,
+    textAlign: 'center',
+    height: 35,
+    paddingTop: 3,
+    borderRadius: 15,
+    backgroundColor: '#26EBA6',
   },
 });

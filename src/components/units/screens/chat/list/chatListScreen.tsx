@@ -8,6 +8,8 @@ import {GlobalContext} from '../../../../../../App';
 export default function ChatListScreen({navigation}) {
   const {userInfo} = useContext(GlobalContext);
 
+  console.log('채팅방', userInfo);
+
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
 

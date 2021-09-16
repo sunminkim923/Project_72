@@ -33,10 +33,7 @@ const MainLogin = (props: any) => {
         'accessToken',
         result.data.loginUser.accessToken || '',
       );
-      AsyncStorage.setItem(
-        'userInfo',
-        JSON.stringify(resultUser.data.fetchUserLoggedIn) || '',
-      );
+      AsyncStorage.setItem('userInfo', resultUser.data.fetchUserLoggedIn || '');
 
       setAccessToken(result.data?.loginUser.accessToken);
       setUserInfo(resultUser.data.fetchUserLoggedIn);
