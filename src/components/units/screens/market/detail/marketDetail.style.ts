@@ -27,6 +27,7 @@ export const UserName = styled.Text`
   font-size: 18px;
 `;
 export const UserAddress = styled.Text`
+  width: 200px;
   font-size: 14px;
   color: #4f4f4f;
 `;
@@ -40,7 +41,7 @@ export const UserLikeCount = styled.Text`
   color: #26eba6;
   padding-right: 10px;
 `;
-export const UserLikeLogo = styled.View`
+export const UserLikeLogo = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;

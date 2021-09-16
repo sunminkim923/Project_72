@@ -1,12 +1,13 @@
 // import {useMutation} from '@apollo/client';
 import {useMutation} from '@apollo/client';
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Alert} from 'react-native';
 import MarketWriteUI from './marketWrite.presenter';
 import {CREATE_USED_ITEM} from './marketWrite.queries';
 import {schema} from './marketWrite.validation';
+import {FETCH_USED_ITEMS} from '../list/marketList.queries';
 
 const MarketWrite = (props) => {
   const [selectedValue, setSelectedValue] = useState('');
@@ -34,6 +35,7 @@ const MarketWrite = (props) => {
             },
           },
         },
+        refetchQueries: [{query: FETCH_USED_ITEMS}],
       });
       console.log('성공');
       props.navigation.navigate('List');
