@@ -2,7 +2,6 @@ import MainLoginUi from './MainLogin.presenter';
 
 import React from 'react';
 import {useForm} from 'react-hook-form';
-// import auth from '@react-native-firebase/auth';
 import {useContext} from 'react';
 import {GlobalContext} from '../../../../../App';
 import {useApolloClient, useMutation} from '@apollo/client';
@@ -40,11 +39,6 @@ const MainLogin = (props: any) => {
 
       setAccessToken(result.data?.loginUser.accessToken);
       setUserInfo(resultUser.data.fetchUserLoggedIn);
-      const test1 = async () => {
-        const result11 = await AsyncStorage.getItem('userInfo');
-        console.log(result11);
-      };
-      test1();
       Alert.alert('로그인 완료');
     } catch (error) {
       console.log(error.message);
@@ -77,8 +71,3 @@ export default MainLogin;
 //   console.log(result);
 // };
 // test2();
-const test1 = async () => {
-  const result = await AsyncStorage.getItem('userInfo');
-  console.log(result);
-};
-test1();
