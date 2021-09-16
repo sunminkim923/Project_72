@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {IconButton} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   GiftedChat,
   Bubble,
@@ -9,6 +9,9 @@ import {
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {GlobalContext} from '../../../../../../App';
 import firestore from '@react-native-firebase/firestore';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator;
 
 export default function RoomScreen({route}) {
   const {userInfo} = useContext(GlobalContext);
@@ -103,7 +106,7 @@ export default function RoomScreen({route}) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <IconButton icon="send-circle" size={32} color="#6646ee" />
+          <Icon name="send" size={38} color="#6646ee" />
         </View>
       </Send>
     );

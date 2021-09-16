@@ -2,52 +2,57 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ChatListScreen from '../../screens/chat/list/chatListScreen';
 import AddRoomScreen from '../../screens/chat/addRoom/addRoonScreen';
-import {IconButton} from 'react-native-paper';
-import {Provider as PaperProvider} from 'react-native-paper';
 import RoomScreen from '../../screens/chat/room/chatRoomScreen';
-import {Icon} from 'react-native-vector-icons/Icon';
-
-const ChatAppStack = createNativeStackNavigator();
+import Icon from 'react-native-vector-icons/Ionicons';
+import {View, Text, StyleSheet, Alert} from 'react-native';
+import DialogPage from '../../../commons/dialog/dialog';
+import FinshScreen from '../../screens/chat/finish/finishScreen';
 const ModalStack = createNativeStackNavigator();
 
 export default function ChatStackNavigationPage() {
   return (
-    <PaperProvider>
-      <ModalStack.Navigator
-        mode="modal"
-        headerMode="none"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#6646ee',
-          },
-          headerTintColor: '#ffffff',
-          headerTitleStyle: {
-            fontSize: 22,
-          },
-        }}>
-        <ModalStack.Screen
-          name="채팅리스트"
-          component={ChatListScreen}
-          options={({navigation}) => ({
-            headerRight: () => (
-              <IconButton
-                icon="message-plus"
-                size={28}
-                color="#ffffff"
-                onPress={() => navigation.navigate('AddRoom')}
-              />
-            ),
-          })}
-        />
-        <ModalStack.Screen name="AddRoom" component={AddRoomScreen} />
-        <ModalStack.Screen
-          name="Room"
-          component={RoomScreen}
-          options={({route}) => ({
-            title: route.params.thread.name,
-          })}
-        />
-      </ModalStack.Navigator>
-    </PaperProvider>
+    <ModalStack.Navigator
+      mode="modal"
+      headerMode="none"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#6646ee',
+        },
+        headerTintColor: '#ffffff',
+        headerTitleStyle: {
+          fontSize: 22,
+        },
+      }}>
+      <ModalStack.Screen
+        name="채팅리스트"
+        component={ChatListScreen}
+        options={({navigation}) => ({
+          headerRight: () => (
+            <Icon
+              name="chatbubbles-sharp"
+              size={28}
+              color="#ffffff"
+              onPress={() => navigation.navigate('AddRoom')}
+            />
+          ),
+        })}
+      />
+      <ModalStack.Screen name="AddRoom" component={AddRoomScreen} />
+      <ModalStack.Screen
+        name="Room"
+        component={RoomScreen}
+        options={({route, navigation}) => ({
+          title: route.params.thread.title,
+          headerRight: () => <DialogPage navigation={navigation} />,
+        })}
+      />
+      <ModalStack.Screen name="Finish" component={FinshScreen} />
+    </ModalStack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  alertStyle: {
+    color: 'red',
+  },
+});
