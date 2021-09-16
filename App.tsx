@@ -27,21 +27,26 @@ interface IUserInfo {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [accessToken, setAccessToken] = useState('');
-  const [userInfo, setUserInfo] = useState<IUserInfo>({});
+  const [userInfo, setUserInfo] = useState<IUserInfo>();
 
   useEffect(() => {
     const getToken = async () => {
-      if (AsyncStorage.getItem('accessToken')) {
-        setAccessToken(String(await AsyncStorage.getItem('accessToken')));
-      }
-      if (AsyncStorage.getItem('userInfo')) {
-
-        setUserInfo(
-          ((await AsyncStorage.getItem('userInfo')) as IUserInfo) || {},
-        );
+      try {
+        const getAccessToken = await AsyncStorage.getItem('accessToken');
+        const getUserInfo = await AsyncStorage.getItem('userInfo');
+        if (getAccessToken) {
+          setAccessToken(String(getAccessToken));
+        }
+        if (getUserInfo) {
+          const parsed = JSON.parse(getUserInfo) as IUserInfo;
+          if (parsed) {
+            setUserInfo(parsed);
+          }
+        }
+      } catch (error) {
+        console.log('EffectError', error);
       }
     };
-    console.log(userInfo);
     getToken();
   }, []);
 
