@@ -2,11 +2,11 @@ import {useMutation} from '@apollo/client';
 import React, {useState} from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
-import Uploads01UI from './uploads01.presenter';
-import {UPLOAD_FILE} from './uploads01.queries';
+import Uploads02UI from './uploads02.presenter';
+import {UPLOAD_FILE} from './uploads02.queries';
 import {Alert} from 'react-native';
 
-const Uploads01 = (props) => {
+const Uploads02 = (props) => {
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [imageUri, setImageUri] = useState({uri: ''});
   const onPressOpenAlbum = () => {
@@ -30,7 +30,9 @@ const Uploads01 = (props) => {
             },
           });
           console.log(result.data?.uploadFile.url);
-          props.setImage(result.data?.uploadFile.url)
+          props.setImage(
+            'https://storage.googleapis.com/' + result.data?.uploadFile.url,
+          );
         } catch (error) {
           Alert.alert(error.message);
         }
@@ -38,7 +40,7 @@ const Uploads01 = (props) => {
     );
   };
   return (
-    <Uploads01UI imageUri={imageUri} onPressOpenAlbum={onPressOpenAlbum} />
+    <Uploads02UI imageUri={imageUri} onPressOpenAlbum={onPressOpenAlbum} />
   );
 };
-export default Uploads01;
+export default Uploads02;

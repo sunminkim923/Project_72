@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.ScrollView``;
-export const ItemImage = styled.View`
-  height: 240px;
-  background-color: gray;
+export const ItemImage = styled.Image`
+  height: 280px;
 `;
 export const Wrapper = styled.View``;
 export const UserWrapper = styled.View`

@@ -26,10 +26,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {GlobalContext} from '../../../../../../App';
 const MarketDetailUI = (props) => {
   const {userInfo} = useContext(GlobalContext);
+  console.log(userInfo.name)
   return (
     <>
       <Container>
-        <ItemImage />
+        
+        <ItemImage source={{uri:`https://storage.googleapis.com/${props.data?.fetchUseditem.images.[0]}`}}/>
+        
         <Wrapper>
           <UserWrapper>
             <UserImage>
@@ -62,8 +65,8 @@ const MarketDetailUI = (props) => {
             </ItemCreatedAt>
             <ItemContents>{props.data?.fetchUseditem.contents}</ItemContents>
           </ItemInfoWrapper>
-
-          {props.data?.fetchUseditem.seller.name === userInfo.name ? (
+          {props.data?.fetchUseditem.seller.name ===
+          userInfo.name ? (
             <EtcButtonWrapper>
               <EditButton>
                 <>
