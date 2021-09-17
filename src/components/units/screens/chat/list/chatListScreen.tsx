@@ -1,15 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Title, List, Divider} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import Loading from '../../../../commons/loading/loading';
-import {GlobalContext} from '../../../../../../App';
 
 export default function ChatListScreen({navigation}) {
-  const {userInfo} = useContext(GlobalContext);
-
-  console.log('채팅방', userInfo);
-
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +26,6 @@ export default function ChatListScreen({navigation}) {
         });
 
         setThreads(threads);
-
         if (loading) {
           setLoading(false);
         }

@@ -65,7 +65,6 @@ const MarketDetailUI = (props) => {
             </ItemCreatedAt>
             <ItemContents>{props.data?.fetchUseditem.contents}</ItemContents>
           </ItemInfoWrapper>
-
           {props.data?.fetchUseditem.seller.name ===
           userInfo.name ? (
             <EtcButtonWrapper>

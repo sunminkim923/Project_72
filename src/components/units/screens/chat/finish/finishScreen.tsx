@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -8,11 +8,15 @@ import {
 } from 'react-native';
 import {Image, Center, NativeBaseProvider, Input} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {GlobalContext} from '../../../../../../App';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-export default function FinshScreen({navigation}) {
+export default function FinshScreen({navigation}: any) {
+  const {userInfo}: any = useContext(GlobalContext);
+
   const [isLike, setIsLike] = useState(false);
   const [isDisLike, setIsDisLike] = useState(false);
-  const [isFinish, setIsFinish] = useState(false);
+
   function FinishMap() {
     return (
       <View style={styles.imageWrapper}>
@@ -39,58 +43,66 @@ export default function FinshScreen({navigation}) {
   }
 
   function onClickFinish() {
-    setIsFinish(true);
-    navigation.navigate('채팅리스트');
+    if (isLike || isDisLike) {
+      navigation.navigate('채팅리스트');
+    } else return;
   }
 
   return (
-    <NativeBaseProvider>
-      <View style={styles.topWrapper}>
-        <Text style={styles.titleStyle}>산책이 종료되었습니다.</Text>
-      </View>
-      <Center>
-        <FinishMap />
-      </Center>
-      <View style={styles.bodyWrapper}>
-        <View style={styles.contentsWrapper}>
-          <Text style={styles.highlightText}>홍길동</Text>
-          <Text style={styles.textStyle}> 님과 함께</Text>
-          <Text style={styles.highlightText}>1,029</Text>
-          <Text style={styles.textStyle}> m 를 걸으셨군요!</Text>
+    <KeyboardAwareScrollView>
+      <NativeBaseProvider>
+        <View style={styles.topWrapper}>
+          <Text style={styles.titleStyle}>산책이 종료되었습니다.</Text>
         </View>
-        <View style={styles.contentsWrapper}>
-          <Text style={styles.highlightText}>100</Text>
-          <Text style={styles.textStyle}> Point가 적립되었습니다!</Text>
+        <Center>
+          <FinishMap />
+        </Center>
+        <View style={styles.bodyWrapper}>
+          <View style={styles.contentsWrapper}>
+            <Text style={styles.highlightText}>{userInfo.name}</Text>
+            <Text style={styles.textStyle}> 님과 함께</Text>
+            <Text style={styles.highlightText}>1,029</Text>
+            <Text style={styles.textStyle}> m 를 걸으셨군요!</Text>
+          </View>
+          <View style={styles.contentsWrapper}>
+            <Text style={styles.highlightText}>100</Text>
+            <Text style={styles.textStyle}> Point가 적립되었습니다!</Text>
+          </View>
+          <View style={styles.contentsWrapper}>
+            <Text style={styles.highlightText}>{userInfo.name}</Text>
+            <Text style={styles.textStyle}> 님을 평가해주세요!</Text>
+          </View>
         </View>
-        <View style={styles.contentsWrapper}>
-          <Text style={styles.highlightText}>홍길동</Text>
-          <Text style={styles.textStyle}> 님을 평가해주세요!</Text>
+        <View style={styles.buttonWrapper}>
+          <TouchableOpacity onPress={onClickLikeButton}>
+            <Text style={isLike ? styles.likeButtonTrue : styles.likeButton}>
+              좋았어요 <Icon name="thumbs-up-outline" size={20} />
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onClickDislikeButton}>
+            <Text
+              style={
+                isDisLike ? styles.dislikeButtonTrue : styles.dislikeButton
+              }>
+              싫었어요 <Icon name="ios-thumbs-down-outline" size={20} />
+            </Text>
+          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.buttonWrapper}>
-        <TouchableOpacity onPress={onClickLikeButton}>
-          <Text style={isLike ? styles.likeButtonTrue : styles.likeButton}>
-            좋았어요 <Icon name="thumbs-up-outline" size={20} />
-          </Text>
+
+        <View style={styles.inputWrapper}>
+          <TextInput
+            style={styles.inputBox}
+            placeholder="한줄평을 남겨주세요!"
+          />
+        </View>
+
+        <TouchableOpacity
+          style={styles.finishButtonWrapper}
+          onPress={onClickFinish}>
+          <Text style={styles.finishButton}>확인</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onClickDislikeButton}>
-          <Text
-            style={isDisLike ? styles.dislikeButtonTrue : styles.dislikeButton}>
-            싫었어요 <Icon name="ios-thumbs-down-outline" size={20} />
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.inputWrapper}>
-        <TextInput style={styles.inputBox} placeholder="한줄평을 남겨주세요!" />
-      </View>
-      <TouchableOpacity
-        style={styles.finishButtonWrapper}
-        onPress={onClickFinish}>
-        <Text style={isFinish ? styles.finishButtonTrue : styles.finishButton}>
-          확인
-        </Text>
-      </TouchableOpacity>
-    </NativeBaseProvider>
+      </NativeBaseProvider>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -201,15 +213,8 @@ const styles = StyleSheet.create({
     paddingTop: 3,
     borderRadius: 15,
   },
-  finishButtonTrue: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    borderWidth: 1.5,
-    width: 120,
-    textAlign: 'center',
-    height: 35,
-    paddingTop: 3,
-    borderRadius: 15,
-    backgroundColor: '#26EBA6',
+  rootContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
   },
 });

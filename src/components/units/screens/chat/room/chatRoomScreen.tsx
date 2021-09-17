@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, createContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   GiftedChat,
@@ -9,19 +9,19 @@ import {
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {GlobalContext} from '../../../../../../App';
 import firestore from '@react-native-firebase/firestore';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Stack = createNativeStackNavigator;
+export default function RoomScreen({route}: any) {
+  const {userInfo}: any = useContext(GlobalContext);
 
-export default function RoomScreen({route}) {
-  const {userInfo} = useContext(GlobalContext);
+  const [user, setUser] = useState('');
+
+  console.log('BB', user);
 
   const {thread} = route.params;
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState();
 
-  async function handleSend(messages) {
+  async function handleSend(messages: any) {
     const text = messages[0].text;
 
     firestore()
@@ -34,6 +34,7 @@ export default function RoomScreen({route}) {
         user: {
           _id: userInfo._id,
           email: userInfo.email,
+          name: userInfo.name,
         },
       });
 
@@ -58,6 +59,10 @@ export default function RoomScreen({route}) {
       .collection('MESSAGES')
       .orderBy('createdAt', 'desc')
       .onSnapshot((querySnapshot) => {
+        if (querySnapshot.empty) {
+          return;
+        }
+
         const messages = querySnapshot.docs.map((doc) => {
           const firebaseData = doc.data();
 
@@ -66,13 +71,18 @@ export default function RoomScreen({route}) {
             text: '',
             createdAt: new Date().getTime(),
             ...firebaseData,
+            user: firebaseData.name,
           };
 
           if (!firebaseData.system) {
             data.user = {
               ...firebaseData.user,
-              name: userInfo.name,
+              name: firebaseData.user.name,
             };
+
+            if (firebaseData.user.name !== userInfo.name) {
+              setUser(firebaseData.user.name);
+            }
           }
 
           return data;
@@ -84,7 +94,7 @@ export default function RoomScreen({route}) {
     return () => messagesListener();
   }, []);
 
-  function renderBubble(props) {
+  function renderBubble(props: any) {
     return (
       <Bubble
         {...props}
@@ -102,7 +112,7 @@ export default function RoomScreen({route}) {
     );
   }
 
-  function renderSend(props) {
+  function renderSend(props: any) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
@@ -120,7 +130,7 @@ export default function RoomScreen({route}) {
     );
   }
 
-  function renderSystemMessage(props) {
+  function renderSystemMessage(props: any) {
     return (
       <SystemMessage
         {...props}
