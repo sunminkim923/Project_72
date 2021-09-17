@@ -11,6 +11,7 @@ import {
   Wrapper,
   WriteButton,
   ButtonWrapper,
+  ImageDefault,
 } from './marketList.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {priceToString} from '../../../../commons/utils';
@@ -19,6 +20,7 @@ const MarketListUI = (props) => {
   const state = {
     data: props.data?.fetchUseditems,
   };
+  console.log(props.data?.fetchUseditems);
   const renderItem = ({item}) => (
     <TouchableOpacity
       key={item._id}
@@ -26,7 +28,14 @@ const MarketListUI = (props) => {
         props.navigation.navigate('Detail', {item});
       }}>
       <Wrapper>
-        <ImageWrapper></ImageWrapper>
+        {item.images?.[0] ? (
+          <ImageWrapper
+            source={{uri: `https://storage.googleapis.com/${item.images?.[0]}`}}
+          />
+        ) : (
+          <ImageDefault><Icon size={40} color={'#fff'} name="close-outline" /></ImageDefault>
+        )}
+
         <ContentsWrapper>
           <ItemTitle numberOfLines={2} ellipsizeMode="tail">
             {item.name}

@@ -12,6 +12,8 @@ import {createUploadLink} from 'apollo-upload-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LandingPage from './pages/screens/landing';
 import RegistStackNavigationPage from './pages/navigation/RegistStackNavigation';
+import {assertSchema} from 'graphql';
+import ImageTest from './src/components/commons/test';
 
 export const GlobalContext = createContext({});
 
@@ -72,6 +74,7 @@ function App() {
     <>
       <GlobalContext.Provider value={value}>
         <ApolloProvider client={client}>
+          {/* <ImageTest /> */}
           {
             isLoading && <LandingPage setIsLoading={setIsLoading} />
             //isLoading && fadeinview
