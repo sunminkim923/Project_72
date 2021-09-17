@@ -11,6 +11,7 @@ const BoardList = (props: any) => {
   const {data, fetchMore} = useQuery(FETCH_BOARDS, {
     variables: {page: page},
   });
+  const [commentCount, setCommentCount] = useState(0);
 
   const onLoadMore = () => {
     fetchMore({
@@ -29,6 +30,8 @@ const BoardList = (props: any) => {
   return (
     <BoardListUI
       data={data}
+      commentCount={commentCount}
+      setCommentCount={setCommentCount}
       hasMore={hasMore}
       setPage={setPage}
       onLoadMore={onLoadMore}
