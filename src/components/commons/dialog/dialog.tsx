@@ -3,10 +3,10 @@ import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Dialog from 'react-native-dialog';
 import {GlobalContext} from '../../../../App';
 
-export default function DialogPage({navigation}) {
+export default function DialogPage(props, {navigation}) {
   const [visible, setVisible] = useState(false);
   const [isStart, setIsStart] = useState(false);
-
+  console.log('FFF', props);
   const {userInfo} = useContext(GlobalContext);
 
   const showDialog = () => {
@@ -34,7 +34,7 @@ export default function DialogPage({navigation}) {
         <Text> {isStart ? '즐거운 산책중🐕 ' : '산책시작🐕'} </Text>
       </TouchableOpacity>
       <Dialog.Container visible={visible}>
-        <Dialog.Title>{userInfo.name} 님과의 산책</Dialog.Title>
+        <Dialog.Title> 님과의 산책</Dialog.Title>
         <Dialog.Description>
           {isStart
             ? ' 산책을 종료하시겠습니까? '

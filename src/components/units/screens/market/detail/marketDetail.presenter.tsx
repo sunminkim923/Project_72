@@ -63,8 +63,7 @@ const MarketDetailUI = (props) => {
             <ItemContents>{props.data?.fetchUseditem.contents}</ItemContents>
           </ItemInfoWrapper>
 
-          {props.data?.fetchUseditem.seller.name ===
-          JSON.parse(userInfo).name ? (
+          {props.data?.fetchUseditem.seller.name === userInfo.name ? (
             <EtcButtonWrapper>
               <EditButton>
                 <>
