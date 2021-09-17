@@ -6,11 +6,18 @@ export const Wrapper = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: #eaeaea;
 `;
-export const ImageWrapper = styled.View`
-  background-color: gray;
+export const ImageWrapper = styled.Image`
   width: 100px;
   height: 100px;
   border-radius: 10px;
+`;
+export const ImageDefault = styled.View`
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 export const ContentsWrapper = styled.View`
   padding-left: 30px;

@@ -8,6 +8,7 @@ export const FETCH_USED_ITEM = gql`
       price
       pickedCount
       createdAt
+      images
       useditemAddress {
         address
         addressDetail

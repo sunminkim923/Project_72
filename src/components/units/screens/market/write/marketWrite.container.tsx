@@ -1,6 +1,6 @@
 // import {useMutation} from '@apollo/client';
 import {useMutation} from '@apollo/client';
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Alert} from 'react-native';
@@ -10,6 +10,7 @@ import {schema} from './marketWrite.validation';
 import {FETCH_USED_ITEMS} from '../list/marketList.queries';
 
 const MarketWrite = (props) => {
+  const [image, setImage] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const {control, handleSubmit, formState} = useForm({
@@ -28,6 +29,7 @@ const MarketWrite = (props) => {
             name: data.name,
             price: data.price,
             contents: data.contents,
+            images: image,
             remarks: 'UsedItmes',
             useditemAddress: {
               address: data.address,
@@ -51,6 +53,7 @@ const MarketWrite = (props) => {
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
       errors={formState.errors}
+      setImage={setImage}
     />
   );
 };

@@ -22,6 +22,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Controller} from 'react-hook-form';
 import {Picker} from 'react-native';
+import Uploads01 from '../../../../commons/uploads/01/uploads01.container';
 const MarketWriteUI = (props) => {
   return (
     <>
@@ -31,9 +32,7 @@ const MarketWriteUI = (props) => {
             <Title>상품 등록</Title>
           </TitleWrapper>
           <AddImageWrapper>
-            <AddImage>
-              <Icon size={60} color={'#fff'} name="md-add-sharp" />
-            </AddImage>
+            <Uploads01 setImage={props.setImage} />
             <AddImageText>상품 사진을 첨부해주세요</AddImageText>
           </AddImageWrapper>
           <InputWrapper>
@@ -69,7 +68,7 @@ const MarketWriteUI = (props) => {
             <Controller
               name="address"
               control={props.control}
-              render={({field: {onChange,value}}) => (
+              render={({field: {onChange, value}}) => (
                 <AddressWrapper>
                   <Address
                     selectedValue={value}
@@ -88,7 +87,8 @@ const MarketWriteUI = (props) => {
                     <Picker.Item label="제주" value="제주" />
                   </Address>
                 </AddressWrapper>
-              )}/>
+              )}
+            />
             <Controller
               name="addressDetail"
               control={props.control}
