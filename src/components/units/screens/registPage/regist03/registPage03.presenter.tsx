@@ -9,14 +9,9 @@ import {
   TitleWrapper,
   Wrapper,
 } from './registPage03.style';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {useContext} from 'react';
-import {GlobalContext} from '../../../../../../App';
+import Uploads02 from '../../../../commons/uploads/02/uploads02.container';
 
 const Regist03UI = (props: any) => {
-  const {userInfo} = useContext(GlobalContext);
-  console.log('user', userInfo);
-  console.log('last', props.petInfo);
   return (
     <>
       <Container>
@@ -24,9 +19,7 @@ const Regist03UI = (props: any) => {
           <TitleWrapper>
             <Title>대표 사진을 등록해주세요</Title>
           </TitleWrapper>
-          <AddImageButton>
-            <Icon size={60} color={'#aaa'} name="md-add-sharp" />
-          </AddImageButton>
+          <Uploads02 setImage={props.setImage} />
           <ButtonWrapper>
             <SubmitButton
               onPress={() => {
