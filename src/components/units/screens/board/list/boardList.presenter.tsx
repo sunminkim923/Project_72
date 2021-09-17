@@ -32,48 +32,52 @@ const BoardListUI = (props: any) => {
   const state = {
     data: props.data?.fetchBoards,
   };
+
+  // console.log(state.data, '이거');
+  // console.log(state.count, '이거22');
   const renderItem = ({item}: any) => (
-    <TouchableOpacity key={uuidv4()}>
-      <Wrapper>
-        <UserWrapper>
-          <UserImage>
-            <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
-          </UserImage>
-          <UserInfoWrapper>
-            <UserInfoLeftContents>
-              <UserName>{item.writer}</UserName>
-              <CreatedAt>{getDate(item.createdAt)}</CreatedAt>
-            </UserInfoLeftContents>
-            <UserInfoRightContents>
-              <MoreButton>
-                <Icon size={30} color={'#C4C4C4'} name="ellipsis-horizontal" />
-              </MoreButton>
-            </UserInfoRightContents>
-          </UserInfoWrapper>
-        </UserWrapper>
-        <ImageWrapper></ImageWrapper>
-        <BoardContentsWrapper>
-          <BoardContentsText>{item.contents}</BoardContentsText>
-        </BoardContentsWrapper>
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate('Comments');
-          }}>
-          <CommentsWrapper>
-            <BoardComments>
-              <CommentsText>댓글 @개 모두보기</CommentsText>
-              {/* <LikeText>좋아요 @개</LikeText> */}
-            </BoardComments>
-            <NewCommentsWrapper>
-              <CommentsUserImage>
-                <Icon size={30} color={'#bdbdbd'} name="person-circle-sharp" />
-              </CommentsUserImage>
-              <NewCommentsText>댓글 달기 ...</NewCommentsText>
-            </NewCommentsWrapper>
-          </CommentsWrapper>
-        </TouchableOpacity>
-      </Wrapper>
-    </TouchableOpacity>
+    <Wrapper key={uuidv4()}>
+      <UserWrapper>
+        <UserImage>
+          <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
+        </UserImage>
+        <UserInfoWrapper>
+          <UserInfoLeftContents>
+            <UserName>{item.writer}</UserName>
+            <CreatedAt>{getDate(item.createdAt)}</CreatedAt>
+          </UserInfoLeftContents>
+          <UserInfoRightContents>
+            <MoreButton>
+              <Icon size={30} color={'#C4C4C4'} name="ellipsis-horizontal" />
+            </MoreButton>
+          </UserInfoRightContents>
+        </UserInfoWrapper>
+      </UserWrapper>
+      <ImageWrapper></ImageWrapper>
+      <BoardContentsWrapper>
+        <BoardContentsText>{item.contents}</BoardContentsText>
+      </BoardContentsWrapper>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Comments', {
+            item,
+            setCommentCount: props.setCommentCount,
+          });
+        }}>
+        <CommentsWrapper>
+          <BoardComments>
+            <CommentsText>댓글 {props.commentCount}개 모두보기</CommentsText>
+            {/* <LikeText>{console.log(item, 'item11')}</LikeText> */}
+          </BoardComments>
+          <NewCommentsWrapper>
+            <CommentsUserImage>
+              <Icon size={30} color={'#bdbdbd'} name="person-circle-sharp" />
+            </CommentsUserImage>
+            <NewCommentsText>댓글 달기 ...</NewCommentsText>
+          </NewCommentsWrapper>
+        </CommentsWrapper>
+      </TouchableOpacity>
+    </Wrapper>
   );
   return (
     <>
