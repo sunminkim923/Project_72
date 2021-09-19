@@ -62,9 +62,3 @@ const MainLogin = (props: any) => {
   return <MainBottomTabNavigationPage />;
 };
 export default MainLogin;
-
-// const test2 = async () => {
-//   const result = await AsyncStorage.getItem('accessToken');
-//   console.log(result);
-// };
-// test2();

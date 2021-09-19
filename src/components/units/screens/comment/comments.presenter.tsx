@@ -24,7 +24,7 @@ import {FlatList} from 'react-native';
 import {getDate} from '../../../commons/utils';
 
 const CommentsUI = (props: any) => {
-  const state = {commentDate: props.data?.fetchBoardComments};
+  const state = {commentDate: props.commentsData?.fetchBoardComments};
   const renderItem = ({item}: any) => (
     <CommentsWrapper key={uuidv4()}>
       <UserImage>
