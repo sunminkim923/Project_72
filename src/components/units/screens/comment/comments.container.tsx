@@ -7,17 +7,17 @@ import {CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS} from './comments.queries';
 
 const Comments = (props: any) => {
   const {userInfo} = useContext(GlobalContext);
-  const {data: commentsData} = useQuery(FETCH_BOARD_COMMENTS, {
-    variables: {boardId: props.BoardId},
-  });
+
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
+
   const {handleSubmit, control} = useForm({defaultValues: {contents: ''}});
-  const Count = commentsData?.fetchBoardComments.length;
+
   useEffect(() => {
-    if (commentsData) {
-      props.setCommentCount(Count);
+    if (props.BoardId) {
+      props.DataId(props.BoardId);
+      props.setCommentCount(props.commentsData?.fetchBoardComments.length);
     }
-  });
+  }, []);
   const onCommentSubmit = async (data: any) => {
     try {
       await createBoardComment({
@@ -47,7 +47,8 @@ const Comments = (props: any) => {
 
   return (
     <CommentsUI
-      data={commentsData}
+      // data={commentsData}
+      commentsData={props.commentsData}
       onCommentSubmit={onCommentSubmit}
       handleSubmit={handleSubmit}
       control={control}

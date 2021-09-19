@@ -33,8 +33,6 @@ const BoardListUI = (props: any) => {
     data: props.data?.fetchBoards,
   };
 
-  // console.log(state.data, '이거');
-  // console.log(state.count, '이거22');
   const renderItem = ({item}: any) => (
     <Wrapper key={uuidv4()}>
       <UserWrapper>
@@ -61,13 +59,14 @@ const BoardListUI = (props: any) => {
         onPress={() => {
           props.navigation.navigate('Comments', {
             item,
+            commentsData: props.commentsData,
+            setBoardDataId: props.setBoardDataId,
             setCommentCount: props.setCommentCount,
           });
         }}>
         <CommentsWrapper>
           <BoardComments>
             <CommentsText>댓글 {props.commentCount}개 모두보기</CommentsText>
-            {/* <LikeText>{console.log(item, 'item11')}</LikeText> */}
           </BoardComments>
           <NewCommentsWrapper>
             <CommentsUserImage>
