@@ -11,7 +11,6 @@ const BoardList = (props: any) => {
   const {data, fetchMore} = useQuery(FETCH_BOARDS, {
     variables: {page: page},
   });
-
   const {data: commentsData} = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {boardId: BoardDataId},
   });
