@@ -16,6 +16,7 @@ import {
 } from './boardWrite.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Controller} from 'react-hook-form';
+import Uploads01 from '../../../../commons/uploads/01/uploads01.container';
 const BoardWriteUI = (props: any) => {
   return (
     <>
@@ -47,9 +48,10 @@ const BoardWriteUI = (props: any) => {
           />
           <AddImageWrapper>
             <AddImageText>사진 첨부하기</AddImageText>
-            <AddImageButton>
+            {/* <AddImageButton>
               <Icon size={40} color={'#fff'} name="ios-add" />
-            </AddImageButton>
+            </AddImageButton> */}
+            <Uploads01 setImage={props.setImage}/>
           </AddImageWrapper>
           <SubmitButton onPress={props.handleSubmit(props.onBoardSubmit)}>
             <Icon color={'#fff'} size={20} name="brush" />

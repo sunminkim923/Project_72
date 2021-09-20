@@ -32,7 +32,6 @@ const BoardListUI = (props: any) => {
   const state = {
     data: props.data?.fetchBoards,
   };
-
   const renderItem = ({item}: any) => (
     <Wrapper key={uuidv4()}>
       <UserWrapper>
