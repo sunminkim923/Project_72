@@ -28,13 +28,13 @@ const CommentsUI = (props: any) => {
   const renderItem = ({item}: any) => (
     <CommentsWrapper key={uuidv4()}>
       <UserImage
-      imageStyle={{
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-      }}
-      source={{uri: `${item.user?.picture}`}}
+        imageStyle={{
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+          borderBottomLeftRadius: 50,
+          borderBottomRightRadius: 50,
+        }}
+        source={{uri: `${item.user?.picture}`}}
       />
       {/* <UserImage>
         <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
@@ -64,13 +64,13 @@ const CommentsUI = (props: any) => {
         </Wrapper>
         <WriteCommentWrapper>
           <WriteUserImage
-          imageStyle={{
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-            borderBottomLeftRadius: 50,
-            borderBottomRightRadius: 50,
-          }}
-          source={{uri: `${props.userInfo.picture}`}}
+            imageStyle={{
+              borderTopLeftRadius: 50,
+              borderTopRightRadius: 50,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+            }}
+            source={{uri: `${props.userInfo.picture}`}}
           />
           {/* <WriteUserImage>
             <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
