@@ -44,6 +44,13 @@ const Regist02UI = (props: any) => {
               selectedValue={props.petKinds}
               onValueChange={(value) => props.setPetKinds(value)}>
               <Picker.Item label="리트리버" value="리트리버" />
+              <Picker.Item label="말티즈" value="말티즈" />
+              <Picker.Item label="퍼그" value="퍼그" />
+              <Picker.Item label="코카스파니엘" value="코카스파니엘" />
+              <Picker.Item label="시바견" value="시바견" />
+              <Picker.Item label="푸들" value="푸들" />
+              <Picker.Item label="비숑" value="비숑" />
+              <Picker.Item label="포메리안" value="포메리안" />
               <Picker.Item label="웰시코기" value="웰시코기" />
               <Picker.Item label="치와와" value="치와와" />
             </Kinds>

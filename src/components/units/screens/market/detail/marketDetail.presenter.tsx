@@ -73,10 +73,10 @@ const MarketDetailUI = (props) => {
               <UserInfoLeftContents>
                 <UserName>{props.data?.fetchUseditem.seller.name}</UserName>
                 <UserAddress style={{fontWeight: 'bold'}}>
-                  {props.data?.fetchUseditem.useditemAddress.address}
+                  {props.data?.fetchUseditem.useditemAddress?.address}
                 </UserAddress>
                 <UserAddress numberOfLines={2} ellipsizeMode="tail">
-                  {props.data?.fetchUseditem.useditemAddress.addressDetail}
+                  {props.data?.fetchUseditem.useditemAddress?.addressDetail}
                 </UserAddress>
               </UserInfoLeftContents>
               <UserInfoRightContents>
