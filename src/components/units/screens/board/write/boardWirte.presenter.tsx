@@ -10,6 +10,7 @@ import {
   ButtonWrapper,
   Container,
   SubmitButton,
+  SwitchTitle,
   Title,
   TitleWrapper,
   Wrapper,
@@ -27,9 +28,16 @@ const BoardWriteUI = (props: any) => {
           </TitleWrapper>
           <ButtonWrapper>
             <ButtonTitle>산책친구 찾기</ButtonTitle>
-            <Switch
-              trackColor={{false: '#767577', true: '#26eba6'}}
-              value={true}
+            <Controller
+              control={props.control}
+              name="title"
+              render={({field: {onChange, value}}) => (
+                <Switch
+                  trackColor={{false: '#767577', true: '#26eba6'}}
+                  onValueChange={(el) => onChange(el)}
+                  value={value}
+                />
+              )}
             />
           </ButtonWrapper>
           <Controller

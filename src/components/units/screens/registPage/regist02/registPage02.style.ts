@@ -43,7 +43,7 @@ export const MaleButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   border: 1px solid #808080;
-  background-color: ${(props: any) =>
+  background-color: ${(props: {petGender: string}) =>
     props.petGender === 'male' ? '#bdbdbd' : '#ffffff'};
 `;
 
@@ -54,7 +54,7 @@ export const FemaleButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   border: 1px solid #808080;
-  background-color: ${(props: any) =>
+  background-color: ${(props: {petGender: string}) =>
     props.petGender === 'female' ? '#bdbdbd' : '#ffffff'};
 `;
 export const Kinds = styled.Picker`

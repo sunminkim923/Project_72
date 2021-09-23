@@ -50,6 +50,10 @@ export const BoardContentsWrapper = styled.View`
 export const BoardContentsText = styled.Text`
   font-size: 14px;
 `;
+export const BoardTitleText = styled.Text`
+  font-size: 14px;
+  color: #bdbdbd;
+`;
 export const CommentsWrapper = styled.View`
   padding: 15px 10px;
 

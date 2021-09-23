@@ -3,6 +3,7 @@ import {FlatList, TouchableOpacity} from 'react-native';
 import {
   BoardComments,
   BoardContentsText,
+  BoardTitleText,
   BoardContentsWrapper,
   CommentsText,
   CommentsUserImage,
@@ -62,6 +63,7 @@ const BoardListUI = (props: any) => {
       )}
       <BoardContentsWrapper>
         <BoardContentsText>{item.contents}</BoardContentsText>
+        <BoardTitleText>{item.title}</BoardTitleText>
       </BoardContentsWrapper>
       <TouchableOpacity
         onPress={() => {
