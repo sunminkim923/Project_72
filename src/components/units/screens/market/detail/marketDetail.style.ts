@@ -1,4 +1,38 @@
 import styled from 'styled-components/native';
+export const ModalWrapper = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+export const ModalView = styled.View`
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 50px;
+  border-radius: 20px;
+  align-items: center;
+`;
+export const ModalText = styled.Text`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+`;
+export const ModalButtonWrapper = styled.View`
+  flex-direction: row;
+  padding-top: 20px;
+`;
+export const ModalButton = styled.TouchableOpacity`
+  width: 80px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #26eba6;
+  justify-content: center;
+  align-items: center;
+`;
+export const ModalButtonText = styled.Text`
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+`;
 
 export const Container = styled.ScrollView``;
 export const ItemImage = styled.Image`

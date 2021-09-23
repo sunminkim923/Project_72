@@ -8,6 +8,9 @@ export const CREATE_BOARD = gql`
       title
       contents
       createdAt
+      user {
+        picture
+      }
     }
   }
 `;
