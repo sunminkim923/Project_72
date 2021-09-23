@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 import BoardListUI from './boardList.presenter';
 import {FETCH_BOARDS, FETCH_BOARD_COMMENTS} from './boardList.queries';
 const BoardList = (props: any) => {
+
   const [hasMore, setHasMore] = useState(true);
   const [BoardDataId, setBoardDataId] = useState();
 
@@ -41,6 +42,7 @@ const BoardList = (props: any) => {
   return (
     <BoardListUI
       data={data}
+      userInfo={userInfo}
       commentsData={commentsData}
       setBoardDataId={setBoardDataId}
       commentCount={commentCount}

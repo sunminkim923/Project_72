@@ -37,9 +37,18 @@ const BoardListUI = (props: any) => {
   const renderItem = ({item}: any) => (
     <Wrapper key={uuidv4()}>
       <UserWrapper>
-        <UserImage>
+        <UserImage
+          imageStyle={{
+            borderTopLeftRadius: 60,
+            borderTopRightRadius: 60,
+            borderBottomLeftRadius: 60,
+            borderBottomRightRadius: 60,
+          }}
+          source={{uri: `${item.user?.picture}`}}
+        />
+        {/* <UserImage>
           <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
-        </UserImage>
+        </UserImage> */}
         <UserInfoWrapper>
           <UserInfoLeftContents>
             <UserName>{item.writer}</UserName>
@@ -79,9 +88,18 @@ const BoardListUI = (props: any) => {
             <CommentsText>댓글 {props.commentCount}개 모두보기</CommentsText>
           </BoardComments>
           <NewCommentsWrapper>
-            <CommentsUserImage>
+            <CommentsUserImage
+              imageStyle={{
+                borderTopLeftRadius: 30,
+                borderTopRightRadius: 30,
+                borderBottomLeftRadius: 30,
+                borderBottomRightRadius: 30,
+              }}
+              source={{uri: `${props.userInfo.picture}`}}
+            />
+            {/* <CommentsUserImage>
               <Icon size={30} color={'#bdbdbd'} name="person-circle-sharp" />
-            </CommentsUserImage>
+            </CommentsUserImage> */}
             <NewCommentsText>댓글 달기 ...</NewCommentsText>
           </NewCommentsWrapper>
         </CommentsWrapper>

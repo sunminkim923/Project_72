@@ -19,16 +19,41 @@ import {
   UserWrapper,
   Wrapper,
   DeleteButton,
-  EditButton,
   EtcButtonWrapper,
+  ModalWrapper,
+  ModalView,
+  ModalText,
+  ModalButtonWrapper,
+  ModalButton,
+  ModalButtonText,
 } from './marketDetail.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {GlobalContext} from '../../../../../../App';
+import { Alert, Modal } from 'react-native';
 const MarketDetailUI = (props) => {
   const {userInfo} = useContext(GlobalContext);
-  console.log(userInfo.name)
   return (
     <>
+        <Modal
+        animationType="fade"
+        transparent={true}
+        visible={props.modalVisible}
+        onRequestClose={()=>{
+          Alert.alert('상품이 정상적으로 삭제되었습니다')
+          props.setModalVisible(!props.modalVisible)
+        }}
+        >
+          <ModalWrapper>
+            <ModalView>
+              <ModalText>상품을 삭제하시겠습니까?</ModalText>
+              <ModalButtonWrapper>
+                <ModalButton onPress={props.onPressDelete}><ModalButtonText>예</ModalButtonText></ModalButton>
+                <ModalButton onPress={props.onPressCloseModal}><ModalButtonText>아니오</ModalButtonText></ModalButton>
+              </ModalButtonWrapper>
+            </ModalView>
+          </ModalWrapper>
+        </Modal>
+
       <Container>
         
         <ItemImage source={{uri:`https://storage.googleapis.com/${props.data?.fetchUseditem.images.[0]}`}}/>
@@ -44,9 +69,6 @@ const MarketDetailUI = (props) => {
                 }}
                 source={{uri: `${props.data?.fetchUseditem.seller.picture}`}}
               />
-            {/* <UserImage>
-              <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
-            </UserImage> */}
             <UserInfoWrapper>
               <UserInfoLeftContents>
                 <UserName>{props.data?.fetchUseditem.seller.name}</UserName>
@@ -77,13 +99,7 @@ const MarketDetailUI = (props) => {
           {props.data?.fetchUseditem.seller.name ===
           userInfo.name ? (
             <EtcButtonWrapper>
-              <EditButton>
-                <>
-                  <Icon size={20} color={'#fff'} name="pencil" />
-                  <ButtonText>수정</ButtonText>
-                </>
-              </EditButton>
-              <DeleteButton onPress={props.onPressDelete}>
+              <DeleteButton onPress={props.onPressOpenModal}>
                 <>
                   <Icon size={20} color={'#fff'} name="md-close" />
                   <ButtonText>삭제</ButtonText>

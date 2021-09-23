@@ -5,7 +5,12 @@ export const UserWrapper = styled.View`
   flex-direction: row;
   padding: 15px 10px;
 `;
-export const UserImage = styled.View`
+export const UserImage = styled.ImageBackground`
+  border: 1px solid #26eba6;
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
   justify-content: center;
   align-items: center;
 `;
@@ -77,11 +82,15 @@ export const NewCommentsWrapper = styled.View`
   align-items: center;
   padding-top: 10px;
 `;
-export const CommentsUserImage = styled.View`
+export const CommentsUserImage = styled.ImageBackground`
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
   justify-content: center;
   align-items: center;
 `;
 export const NewCommentsText = styled.Text`
+  margin-left: 10px;
   font-size: 12px;
   color: #828282;
 `;
