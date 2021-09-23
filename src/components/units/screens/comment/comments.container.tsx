@@ -1,23 +1,24 @@
 import {useMutation, useQuery} from '@apollo/client';
-import React, {useContext, useEffect} from 'react';
+
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
+import {Alert} from 'react-native';
+
 import {GlobalContext} from '../../../../../App';
 import CommentsUI from './comments.presenter';
 import {CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS} from './comments.queries';
 
 const Comments = (props: any) => {
   const {userInfo} = useContext(GlobalContext);
-
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
+  const {data: commentsData} = useQuery(FETCH_BOARD_COMMENTS, {
+    variables: {boardId: props.BoardId},
+  });
 
-  const {handleSubmit, control} = useForm({defaultValues: {contents: ''}});
+  const {handleSubmit, control, reset} = useForm({
+    defaultValues: {contents: ''},
+  });
 
-  useEffect(() => {
-    if (props.BoardId) {
-      props.DataId(props.BoardId);
-      props.setCommentCount(props.commentsData?.fetchBoardComments.length);
-    }
-  }, []);
   const onCommentSubmit = async (data: any) => {
     try {
       await createBoardComment({
@@ -39,7 +40,8 @@ const Comments = (props: any) => {
           },
         ],
       });
-      console.log('댓글 등록');
+      Alert.alert('댓글이 등록 되었습니다.');
+      reset({contents: ''});
     } catch (error) {
       console.log(error.message);
     }
@@ -47,7 +49,7 @@ const Comments = (props: any) => {
 
   return (
     <CommentsUI
-      // data={commentsData}
+      data={commentsData}
       userInfo={userInfo}
       commentsData={props.commentsData}
       onCommentSubmit={onCommentSubmit}

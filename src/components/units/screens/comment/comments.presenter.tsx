@@ -17,14 +17,13 @@ import {
   WriteCommentWrapper,
   WriteUserImage,
 } from './comments.style';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Controller} from 'react-hook-form';
 import {v4 as uuidv4} from 'uuid';
 import {FlatList} from 'react-native';
 import {getDate} from '../../../commons/utils';
 
 const CommentsUI = (props: any) => {
-  const state = {commentDate: props.commentsData?.fetchBoardComments};
+  const state = {commentDate: props.data?.fetchBoardComments};
   const renderItem = ({item}: any) => (
     <CommentsWrapper key={uuidv4()}>
       <UserImage
@@ -36,9 +35,6 @@ const CommentsUI = (props: any) => {
         }}
         source={{uri: `${item.user?.picture}`}}
       />
-      {/* <UserImage>
-        <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
-      </UserImage> */}
       <CommentsLeftWrapper>
         <CommentsUserName>{item.writer}</CommentsUserName>
         <CommentsCreactedAt>{getDate(item.createdAt)}</CommentsCreactedAt>
@@ -72,9 +68,6 @@ const CommentsUI = (props: any) => {
             }}
             source={{uri: `${props.userInfo.picture}`}}
           />
-          {/* <WriteUserImage>
-            <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
-          </WriteUserImage> */}
           <Controller
             control={props.control}
             name="contents"
