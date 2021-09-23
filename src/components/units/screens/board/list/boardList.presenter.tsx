@@ -12,7 +12,6 @@ import {
   CreatedAt,
   ImageWrapper,
   ImageDefault,
-  LikeText,
   MoreButton,
   NewCommentsText,
   NewCommentsWrapper,
@@ -46,9 +45,6 @@ const BoardListUI = (props: any) => {
           }}
           source={{uri: `${item.user?.picture}`}}
         />
-        {/* <UserImage>
-          <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
-        </UserImage> */}
         <UserInfoWrapper>
           <UserInfoLeftContents>
             <UserName>{item.writer}</UserName>
@@ -78,14 +74,13 @@ const BoardListUI = (props: any) => {
         onPress={() => {
           props.navigation.navigate('Comments', {
             item,
-            commentsData: props.commentsData,
-            setBoardDataId: props.setBoardDataId,
-            setCommentCount: props.setCommentCount,
           });
         }}>
         <CommentsWrapper>
           <BoardComments>
-            <CommentsText>댓글 {props.commentCount}개 모두보기</CommentsText>
+            <CommentsText>
+              댓글 {item.boardCommentsCount}개 모두보기
+            </CommentsText>
           </BoardComments>
           <NewCommentsWrapper>
             <CommentsUserImage
@@ -97,9 +92,6 @@ const BoardListUI = (props: any) => {
               }}
               source={{uri: `${props.userInfo.picture}`}}
             />
-            {/* <CommentsUserImage>
-              <Icon size={30} color={'#bdbdbd'} name="person-circle-sharp" />
-            </CommentsUserImage> */}
             <NewCommentsText>댓글 달기 ...</NewCommentsText>
           </NewCommentsWrapper>
         </CommentsWrapper>

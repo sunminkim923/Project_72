@@ -37,7 +37,6 @@ export const MoreButton = styled.View`
   height: 30px;
   align-items: center;
   justify-content: center;
-  /* background-color: gray; */
 `;
 export const ImageWrapper = styled.Image`
   height: 370px;
@@ -70,10 +69,6 @@ export const BoardComments = styled.View`
   justify-content: space-between;
 `;
 export const CommentsText = styled.Text`
-  font-size: 12px;
-  color: #828282;
-`;
-export const LikeText = styled.Text`
   font-size: 12px;
   color: #828282;
 `;

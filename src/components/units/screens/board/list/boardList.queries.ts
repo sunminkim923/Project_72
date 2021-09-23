@@ -9,6 +9,7 @@ export const FETCH_BOARD = gql`
       contents
       createdAt
       iamges
+      boardCommentsCount
     }
   }
 `;
@@ -22,6 +23,7 @@ export const FETCH_BOARDS = gql`
       contents
       createdAt
       images
+      boardCommentsCount
       user {
         picture
       }

@@ -17,28 +17,24 @@ import {
   WriteCommentWrapper,
   WriteUserImage,
 } from './comments.style';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Controller} from 'react-hook-form';
 import {v4 as uuidv4} from 'uuid';
 import {FlatList} from 'react-native';
 import {getDate} from '../../../commons/utils';
 
 const CommentsUI = (props: any) => {
-  const state = {commentDate: props.commentsData?.fetchBoardComments};
+  const state = {commentDate: props.data?.fetchBoardComments};
   const renderItem = ({item}: any) => (
     <CommentsWrapper key={uuidv4()}>
       <UserImage
-      imageStyle={{
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
-      }}
-      source={{uri: `${item.user?.picture}`}}
+        imageStyle={{
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+          borderBottomLeftRadius: 50,
+          borderBottomRightRadius: 50,
+        }}
+        source={{uri: `${item.user?.picture}`}}
       />
-      {/* <UserImage>
-        <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
-      </UserImage> */}
       <CommentsLeftWrapper>
         <CommentsUserName>{item.writer}</CommentsUserName>
         <CommentsCreactedAt>{getDate(item.createdAt)}</CommentsCreactedAt>
@@ -64,17 +60,14 @@ const CommentsUI = (props: any) => {
         </Wrapper>
         <WriteCommentWrapper>
           <WriteUserImage
-          imageStyle={{
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-            borderBottomLeftRadius: 50,
-            borderBottomRightRadius: 50,
-          }}
-          source={{uri: `${props.userInfo.picture}`}}
+            imageStyle={{
+              borderTopLeftRadius: 50,
+              borderTopRightRadius: 50,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+            }}
+            source={{uri: `${props.userInfo.picture}`}}
           />
-          {/* <WriteUserImage>
-            <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
-          </WriteUserImage> */}
           <Controller
             control={props.control}
             name="contents"
