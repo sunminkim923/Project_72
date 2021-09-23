@@ -48,6 +48,7 @@ const Comments = (props: any) => {
   return (
     <CommentsUI
       // data={commentsData}
+      userInfo={userInfo}
       commentsData={props.commentsData}
       onCommentSubmit={onCommentSubmit}
       handleSubmit={handleSubmit}

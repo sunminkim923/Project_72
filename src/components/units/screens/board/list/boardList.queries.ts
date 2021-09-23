@@ -22,6 +22,9 @@ export const FETCH_BOARDS = gql`
       contents
       createdAt
       images
+      user {
+        picture
+      }
     }
   }
 `;

@@ -21,7 +21,10 @@ export const CommentsWrapper = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: #eaeaea;
 `;
-export const UserImage = styled.View`
+export const UserImage = styled.ImageBackground`
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
   justify-content: center;
   align-items: center;
 `;
@@ -52,7 +55,10 @@ export const WriteCommentWrapper = styled.View`
   align-items: center;
   justify-content: center;
 `;
-export const WriteUserImage = styled.View`
+export const WriteUserImage = styled.ImageBackground`
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
   justify-content: center;
   align-items: center;
 `;

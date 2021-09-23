@@ -1,10 +1,11 @@
 import {useQuery} from '@apollo/client';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import { GlobalContext } from '../../../../../../App';
 import BoardListUI from './boardList.presenter';
 import {FETCH_BOARDS, FETCH_BOARD_COMMENTS} from './boardList.queries';
 const BoardList = (props: any) => {
   const [page, setPage] = useState(0);
-
+  const {userInfo} = useContext(GlobalContext)
   const [hasMore, setHasMore] = useState(true);
   const [BoardDataId, setBoardDataId] = useState();
 
@@ -34,6 +35,7 @@ const BoardList = (props: any) => {
   return (
     <BoardListUI
       data={data}
+      userInfo={userInfo}
       commentsData={commentsData}
       setBoardDataId={setBoardDataId}
       commentCount={commentCount}
