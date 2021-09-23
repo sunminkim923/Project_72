@@ -1,12 +1,13 @@
 import {useQuery} from '@apollo/client';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useEffect} from 'react';
+import {GlobalContext} from '../../../../../../App';
 import BoardListUI from './boardList.presenter';
 import {FETCH_BOARDS, FETCH_BOARD_COMMENTS} from './boardList.queries';
 const BoardList = (props: any) => {
-
   const [hasMore, setHasMore] = useState(true);
   const [BoardDataId, setBoardDataId] = useState();
+  const {userInfo} = useContext(GlobalContext);
 
   const {data, fetchMore, refetch} = useQuery(FETCH_BOARDS);
   const {data: commentsData} = useQuery(FETCH_BOARD_COMMENTS, {
