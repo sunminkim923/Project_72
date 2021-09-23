@@ -27,9 +27,18 @@ const CommentsUI = (props: any) => {
   const state = {commentDate: props.commentsData?.fetchBoardComments};
   const renderItem = ({item}: any) => (
     <CommentsWrapper key={uuidv4()}>
-      <UserImage>
+      <UserImage
+      imageStyle={{
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
+        borderBottomLeftRadius: 50,
+        borderBottomRightRadius: 50,
+      }}
+      source={{uri: `${item.user?.picture}`}}
+      />
+      {/* <UserImage>
         <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
-      </UserImage>
+      </UserImage> */}
       <CommentsLeftWrapper>
         <CommentsUserName>{item.writer}</CommentsUserName>
         <CommentsCreactedAt>{getDate(item.createdAt)}</CommentsCreactedAt>
@@ -54,9 +63,18 @@ const CommentsUI = (props: any) => {
           />
         </Wrapper>
         <WriteCommentWrapper>
-          <WriteUserImage>
+          <WriteUserImage
+          imageStyle={{
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+          }}
+          source={{uri: `${props.userInfo.picture}`}}
+          />
+          {/* <WriteUserImage>
             <Icon size={50} color={'#bdbdbd'} name="person-circle-sharp" />
-          </WriteUserImage>
+          </WriteUserImage> */}
           <Controller
             control={props.control}
             name="contents"
