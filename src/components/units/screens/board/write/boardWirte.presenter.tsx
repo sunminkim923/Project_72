@@ -51,7 +51,7 @@ const BoardWriteUI = (props: any) => {
             {/* <AddImageButton>
               <Icon size={40} color={'#fff'} name="ios-add" />
             </AddImageButton> */}
-            <Uploads01 setImage={props.setImage}/>
+            <Uploads01 setImage={props.setImage} />
           </AddImageWrapper>
           <SubmitButton onPress={props.handleSubmit(props.onBoardSubmit)}>
             <Icon color={'#fff'} size={20} name="brush" />

@@ -2,7 +2,6 @@ import React from 'react';
 import {Picker} from 'react-native';
 
 import {
-  AgeInput,
   ButtonText,
   ButtonWrapper,
   Container,
@@ -29,25 +28,11 @@ const Regist02UI = (props: any) => {
           <InputWrapper>
             <InputLabel>성별</InputLabel>
             <GenderWrapper>
-              <MaleButton>
-                <Icon
-                  size={60}
-                  color={'#26eba6'}
-                  name="male"
-                  onPress={() => {
-                    props.setPetGender('male');
-                  }}
-                />
+              <MaleButton onPress={props.onPreessSelectMale}>
+                <Icon size={60} color={'#26eba6'} name="male" />
               </MaleButton>
-              <FemaleButton>
-                <Icon
-                  size={60}
-                  color={'#26eba6'}
-                  name="female"
-                  onPress={() => {
-                    props.setPetGender('female');
-                  }}
-                />
+              <FemaleButton onPress={props.onPreessSelectFemale}>
+                <Icon size={60} color={'#26eba6'} name="female" />
               </FemaleButton>
             </GenderWrapper>
             <InputLabel>견종</InputLabel>
