@@ -12,7 +12,7 @@ import {Alert} from 'react-native';
 export const BoardContext = createContext({});
 
 const BoardWrite = (props: any) => {
-  const [image,setImage] = useState('')
+  const [image, setImage] = useState('');
   const [createBoard] = useMutation(CREATE_BOARD);
   const {handleSubmit, control} = useForm({defaultValues: {contents: ''}});
 
@@ -26,7 +26,7 @@ const BoardWrite = (props: any) => {
             password: userInfo._id,
             title: data.contents, // 리스트에서 보일때는 1줄 만 보이고 다음줄은 ... 으로 생략되게 변경 예정
             contents: data.contents,
-            images:image
+            images: image,
           },
         },
       });

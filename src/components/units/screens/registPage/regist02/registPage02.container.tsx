@@ -5,6 +5,14 @@ const Regist02 = (props: any) => {
   const [petGender, setPetGender] = useState('');
   const [petKinds, setPetKinds] = useState('');
 
+  const onPreessSelectMale = () => {
+    setPetGender('male');
+  };
+
+  const onPreessSelectFemale = () => {
+    setPetGender('female');
+  };
+
   return (
     <Regist02UI
       petName={props.petName}
@@ -13,6 +21,8 @@ const Regist02 = (props: any) => {
       setPetGender={setPetGender}
       petKinds={petKinds}
       setPetKinds={setPetKinds}
+      onPreessSelectMale={onPreessSelectMale}
+      onPreessSelectFemale={onPreessSelectFemale}
     />
   );
 };

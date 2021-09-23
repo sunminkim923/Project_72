@@ -10,6 +10,7 @@ import {
   Container,
   CreatedAt,
   ImageWrapper,
+  ImageDefault,
   LikeText,
   MoreButton,
   NewCommentsText,
@@ -50,7 +51,15 @@ const BoardListUI = (props: any) => {
           </UserInfoRightContents>
         </UserInfoWrapper>
       </UserWrapper>
-      <ImageWrapper></ImageWrapper>
+      {item.images?.[0] ? (
+        <ImageWrapper
+          source={{uri: `https://storage.googleapis.com/${item.images?.[0]}`}}
+        />
+      ) : (
+        <ImageDefault>
+          <Icon size={40} color={'#fff'} name="close-outline" />
+        </ImageDefault>
+      )}
       <BoardContentsWrapper>
         <BoardContentsText>{item.contents}</BoardContentsText>
       </BoardContentsWrapper>

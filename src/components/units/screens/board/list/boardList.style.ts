@@ -34,7 +34,11 @@ export const MoreButton = styled.View`
   justify-content: center;
   /* background-color: gray; */
 `;
-export const ImageWrapper = styled.View`
+export const ImageWrapper = styled.Image`
+  height: 370px;
+`;
+
+export const ImageDefault = styled.View`
   height: 370px;
   background-color: gray;
 `;
