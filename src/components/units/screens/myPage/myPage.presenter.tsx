@@ -26,10 +26,11 @@ const MyPageUI = (props: any) => {
 
           <UserInfoWrapper>
             <UserInfoLeftWrapper>
-              <UserImage>
+              <UserImage source={{uri:`https://storage.googleapis.com/${props.data?.fetchUserLoggedIn.picture}`}}/>
+              {/* <UserImage>
                 <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
-              </UserImage>
-              <UserName>유저이름</UserName>
+              </UserImage> */}
+              <UserName>{props.data?.fetchUserLoggedIn.name}</UserName>
             </UserInfoLeftWrapper>
             <UserInfoRightWrapper onPress={props.onPressLogout}>
               <UserInfoEdit>로그아웃</UserInfoEdit>
