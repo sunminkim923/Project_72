@@ -1,5 +1,5 @@
 import {useMutation, useQuery} from '@apollo/client';
-import React from 'react';
+import React, {useState} from 'react';
 import {Alert} from 'react-native';
 import {FETCH_USED_ITEMS} from '../list/marketList.queries';
 import MarketDetailUI from './marketDetail.presenter';
@@ -10,6 +10,7 @@ import {
 } from './marketDetail.queries';
 
 const MarketDetail = (props) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
   const {data} = useQuery(FETCH_USED_ITEM, {
@@ -28,6 +29,12 @@ const MarketDetail = (props) => {
       ],
     });
   };
+  const onPressOpenModal = () => {
+    setModalVisible(true);
+  };
+  const onPressCloseModal = () => {
+    setModalVisible(false);
+  }
   const onPressDelete = async () => {
     try {
       await deleteUseditem({
@@ -45,8 +52,12 @@ const MarketDetail = (props) => {
   return (
     <MarketDetailUI
       data={data}
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
       onPressToggle={onPressToggle}
       onPressDelete={onPressDelete}
+      onPressOpenModal={onPressOpenModal}
+      onPressCloseModal={onPressCloseModal}
     />
   );
 };

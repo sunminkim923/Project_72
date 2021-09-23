@@ -6,6 +6,8 @@ export const UserWrapper = styled.View`
   padding: 15px 10px;
 `;
 export const UserImage = styled.ImageBackground`
+  border: 1px solid #26eba6;
+  margin-right: 10px;
   width: 60px;
   height: 60px;
   border-radius: 60px;
