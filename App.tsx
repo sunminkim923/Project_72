@@ -24,6 +24,7 @@ interface IUserInfo {
   petGender?: string;
   petKinds?: string;
   petName?: string;
+  picture?: string
 }
 
 function App() {

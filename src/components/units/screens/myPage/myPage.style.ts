@@ -30,6 +30,7 @@ export const UserInfoLeftWrapper = styled.View`
   align-items: center;
 `;
 export const UserName = styled.Text`
+  margin-left:10px;
   font-size: 18px;
 `;
 export const UserInfoRightWrapper = styled.TouchableOpacity``;
