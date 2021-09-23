@@ -1,22 +1,27 @@
 import {useQuery} from '@apollo/client';
-import React, {useContext, useState} from 'react';
-import {GlobalContext} from '../../../../../../App';
+import React, {useState} from 'react';
+import {useEffect} from 'react';
 import BoardListUI from './boardList.presenter';
 import {FETCH_BOARDS, FETCH_BOARD_COMMENTS} from './boardList.queries';
 const BoardList = (props: any) => {
-  const [page, setPage] = useState(0);
-  const {userInfo} = useContext(GlobalContext);
+
   const [hasMore, setHasMore] = useState(true);
   const [BoardDataId, setBoardDataId] = useState();
 
-  const {data, fetchMore} = useQuery(FETCH_BOARDS, {
-    variables: {page: page},
-  });
+  const {data, fetchMore, refetch} = useQuery(FETCH_BOARDS);
   const {data: commentsData} = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {boardId: BoardDataId},
   });
 
   const [commentCount, setCommentCount] = useState(0);
+
+  useEffect(() => {
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      console.log('Refreshed!');
+      refetch();
+    });
+    return unsubscribe;
+  }, [props.navigation, refetch]);
 
   const onLoadMore = () => {
     fetchMore({
@@ -24,7 +29,9 @@ const BoardList = (props: any) => {
         page: Math.ceil(data?.fetchBoards.length / 10) + 1,
       },
       updateQuery: (prev, {fetchMoreResult}) => {
-        if (!fetchMoreResult.fetchBoards.length) setHasMore(false);
+        if (!fetchMoreResult.fetchBoards.length) {
+          setHasMore(false);
+        }
         return {
           fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards],
         };
@@ -41,10 +48,8 @@ const BoardList = (props: any) => {
       commentCount={commentCount}
       setCommentCount={setCommentCount}
       hasMore={hasMore}
-      setPage={setPage}
       onLoadMore={onLoadMore}
       navigation={props.navigation}
-      // onPressDetail={onPressDetail}
     />
   );
 };

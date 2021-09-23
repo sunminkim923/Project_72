@@ -28,10 +28,14 @@ const Regist02UI = (props: any) => {
           <InputWrapper>
             <InputLabel>성별</InputLabel>
             <GenderWrapper>
-              <MaleButton onPress={props.onPreessSelectMale}>
+              <MaleButton
+                onPress={props.onPreessSelectMale}
+                petGender={props.petGender}>
                 <Icon size={60} color={'#26eba6'} name="male" />
               </MaleButton>
-              <FemaleButton onPress={props.onPreessSelectFemale}>
+              <FemaleButton
+                onPress={props.onPreessSelectFemale}
+                petGender={props.petGender}>
                 <Icon size={60} color={'#26eba6'} name="female" />
               </FemaleButton>
             </GenderWrapper>
