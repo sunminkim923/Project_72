@@ -1,15 +1,17 @@
-import {useApolloClient, useMutation} from '@apollo/client';
+import {useApolloClient, useMutation, useQuery} from '@apollo/client';
 import React from 'react';
 import {useContext} from 'react';
 import {GlobalContext} from '../../../../../App';
 import MyPageUI from './myPage.presenter';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
+import { FETCH_USER_LOGGED_IN } from './myPage.queries';
 
 const MyPage = () => {
   const client = useApolloClient();
   const {setAccessToken, setUserInfo} = useContext(GlobalContext);
-
+  const {data} = useQuery(FETCH_USER_LOGGED_IN)
+  console.log(data)
   const onPressLogout = async () => {
     try {
       await client.clearStore();
@@ -23,6 +25,6 @@ const MyPage = () => {
     }
   };
 
-  return <MyPageUI onPressLogout={onPressLogout} />;
+  return <MyPageUI onPressLogout={onPressLogout} data={data}/>;
 };
 export default MyPage;
