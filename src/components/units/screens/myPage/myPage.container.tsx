@@ -9,9 +9,9 @@ import { FETCH_USER_LOGGED_IN } from './myPage.queries';
 
 const MyPage = () => {
   const client = useApolloClient();
-  const {setAccessToken, setUserInfo} = useContext(GlobalContext);
+  const {setAccessToken, setUserInfo, userInfo} = useContext(GlobalContext);
   const {data} = useQuery(FETCH_USER_LOGGED_IN)
-  console.log(data)
+  console.log(userInfo)
   const onPressLogout = async () => {
     try {
       await client.clearStore();

@@ -15,6 +15,7 @@ import {
   Wrapper,
 } from './myPage.style';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {right} from 'styled-system';
 const MyPageUI = (props: any) => {
   return (
     <>
@@ -26,7 +27,15 @@ const MyPageUI = (props: any) => {
 
           <UserInfoWrapper>
             <UserInfoLeftWrapper>
-              <UserImage source={{uri:`https://storage.googleapis.com/${props.data?.fetchUserLoggedIn.picture}`}}/>
+              <UserImage
+                imageStyle={{
+                  borderTopLeftRadius: 60,
+                  borderTopRightRadius: 60,
+                  borderBottomLeftRadius: 60,
+                  borderBottomRightRadius: 60,
+                }}
+                source={{uri: `${props.data?.fetchUserLoggedIn.picture}`}}
+              />
               {/* <UserImage>
                 <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
               </UserImage> */}
