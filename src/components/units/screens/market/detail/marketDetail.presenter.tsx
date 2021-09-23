@@ -35,9 +35,18 @@ const MarketDetailUI = (props) => {
         
         <Wrapper>
           <UserWrapper>
-            <UserImage>
+          <UserImage
+                imageStyle={{
+                  borderTopLeftRadius: 60,
+                  borderTopRightRadius: 60,
+                  borderBottomLeftRadius: 60,
+                  borderBottomRightRadius: 60,
+                }}
+                source={{uri: `${props.data?.fetchUseditem.seller.picture}`}}
+              />
+            {/* <UserImage>
               <Icon size={60} color={'#bdbdbd'} name="person-circle-sharp" />
-            </UserImage>
+            </UserImage> */}
             <UserInfoWrapper>
               <UserInfoLeftContents>
                 <UserName>{props.data?.fetchUseditem.seller.name}</UserName>

@@ -11,11 +11,15 @@ export const UserWrapper = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: #eaeaea;
 `;
-export const UserImage = styled.View`
+export const UserImage = styled.ImageBackground`
   align-items: center;
   justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
 `;
 export const UserInfoWrapper = styled.View`
+  margin-left: 10px;
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
