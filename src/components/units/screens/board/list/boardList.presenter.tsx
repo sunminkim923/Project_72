@@ -51,9 +51,18 @@ const BoardListUI = (props: any) => {
             <CreatedAt>{getDate(item.createdAt)}</CreatedAt>
           </UserInfoLeftContents>
           <UserInfoRightContents>
-            <MoreButton>
-              <Icon size={30} color={'#C4C4C4'} name="ellipsis-horizontal" />
-            </MoreButton>
+            {props.userInfo._id === item.user?._id ? (
+              <MoreButton
+                onPress={() => {
+                  props.onPressDeleteBoard(item._id);
+                }}>
+                <Icon size={30} color={'#C4C4C4'} name="ellipsis-horizontal" />
+              </MoreButton>
+            ) : (
+              <MoreButton>
+                <Icon size={30} color={'red'} name="ellipsis-horizontal" />
+              </MoreButton>
+            )}
           </UserInfoRightContents>
         </UserInfoWrapper>
       </UserWrapper>

@@ -25,6 +25,7 @@ export const FETCH_BOARDS = gql`
       images
       boardCommentsCount
       user {
+        _id
         picture
       }
     }
@@ -40,5 +41,11 @@ export const FETCH_BOARD_COMMENTS = gql`
       rating
       createdAt
     }
+  }
+`;
+
+export const DELETE_BOARD = gql`
+  mutation deleteBoard($boardId: ID!) {
+    deleteBoard(boardId: $boardId)
   }
 `;
