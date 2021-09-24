@@ -21,6 +21,9 @@ const MarketDetail = (props) => {
     variables: {useditemId: props.item},
   });
 
+  console.log('디테일', data?.fetchUseditem.seller._id);
+  console.log('인포', userInfo._id);
+
   const onPressToggle = () => {
     toggleUseditemPick({
       variables: {
@@ -62,7 +65,7 @@ const MarketDetail = (props) => {
         title: data.fetchUseditem.seller.name,
         sellerName: data.fetchUseditem.seller.name,
         myName: userInfo.name,
-        sellerId: data.fetchUseditem._id,
+        sellerId: data.fetchUseditem.seller._id,
         myId: userInfo._id,
         latestMessage: {
           text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,

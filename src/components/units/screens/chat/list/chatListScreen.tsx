@@ -9,10 +9,11 @@ export default function ChatListScreen({navigation, route}) {
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const data = Object.assign({}, threads);
-
   const {userInfo} = useContext(GlobalContext);
-  console.log(data);
+
+  const chatData = threads.filter(function (data) {
+    return data.sellerId === userInfo._id || data.myId === userInfo._id;
+  });
 
   useEffect(() => {
     const unsubscribe = firestore()
@@ -45,7 +46,7 @@ export default function ChatListScreen({navigation, route}) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={threads}
+        data={chatData}
         keyExtractor={(item) => item._id}
         ItemSeparatorComponent={() => <Divider />}
         renderItem={({item}) => (
