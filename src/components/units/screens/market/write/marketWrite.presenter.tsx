@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  AddImage,
   AddImageText,
   AddImageWrapper,
   AddressInput,
@@ -23,7 +22,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Controller} from 'react-hook-form';
 import {Picker} from 'react-native';
 import Uploads01 from '../../../../commons/uploads/01/uploads01.container';
-const MarketWriteUI = (props) => {
+import { IMarketWriteUIProps } from './marketWrite.types';
+const MarketWriteUI = (props:IMarketWriteUIProps) => {
   return (
     <>
       <Container>

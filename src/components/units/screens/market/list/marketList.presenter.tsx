@@ -15,13 +15,14 @@ import {
 } from './marketList.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {priceToString} from '../../../../commons/utils';
+import { IMarketListUIProps } from './marketList.types';
 
-const MarketListUI = (props) => {
+const MarketListUI = (props:IMarketListUIProps) => {
   const state = {
     data: props.data?.fetchUseditems,
   };
   console.log(props.data?.fetchUseditems);
-  const renderItem = ({item}) => (
+  const renderItem = ({item}:any) => (
     <TouchableOpacity
       key={item._id}
       onPress={() => {

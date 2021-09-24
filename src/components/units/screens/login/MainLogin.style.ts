@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const Wrapper = styled.View`
   flex: 1;
   align-content: center;
+  justify-content: center;
   padding: 55px;
 `;
 export const LogoWrapper = styled.View`
@@ -30,8 +31,8 @@ export const ButtonWrapper = styled.View`
 
 export const LoginButtonWrapper = styled.TouchableOpacity`
   width: 100%;
-  margin-top: 40px;
-  margin-bottom: 45px;
+  margin-top: 45px;
+  margin-bottom: 20px;
   background-color: #26eba6;
   height: 45px;
   border-radius: 10px;
@@ -44,6 +45,7 @@ export const LoginButton = styled.Text`
   font-weight: bold;
 `;
 export const SignUpWrapper = styled.View`
+  padding-top: 20px;
   margin: auto;
 `;
 

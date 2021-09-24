@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MarketListPage from '../../../../../pages/screens/market';
 import MarketDetailPage from '../../../../../pages/screens/market/[marketId]';
@@ -7,12 +7,9 @@ import RoomScreen from '../../screens/chat/room/chatRoomScreen';
 import DialogPage from '../../../commons/dialog/dialog';
 import ChatListScreen from '../../screens/chat/list/chatListScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {GlobalContext} from '../../../../../App';
 
 const Stack = createNativeStackNavigator();
 const MarketStackNavigationUI = () => {
-  const {userInfo} = useContext(GlobalContext);
-
   return (
     <>
       <Stack.Navigator screenOptions={() => ({headerShown: false})}>
@@ -28,7 +25,8 @@ const MarketStackNavigationUI = () => {
               backgroundColor: '#26EBA6',
             },
             headerTintColor: '#fff',
-            title: route.params.thread.sellerName,
+            // @ts-ignore
+            title: route?.params?.thread.sellerName,
             headerRight: () => <DialogPage navigation={navigation} />,
           })}
         />

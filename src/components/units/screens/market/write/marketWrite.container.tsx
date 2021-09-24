@@ -1,6 +1,6 @@
 // import {useMutation} from '@apollo/client';
 import {useMutation} from '@apollo/client';
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Alert} from 'react-native';
@@ -8,12 +8,12 @@ import MarketWriteUI from './marketWrite.presenter';
 import {CREATE_USED_ITEM} from './marketWrite.queries';
 import {schema} from './marketWrite.validation';
 import {FETCH_USED_ITEMS} from '../list/marketList.queries';
-import {GlobalContext} from '../../../../../../App';
+import {IMarketWriteProps} from './marketWrite.types';
 
-const MarketWrite = (props) => {
-  const {userInfo} = useContext(GlobalContext);
+const MarketWrite = (props: {
+  navigation: {navigate: (arg0: string) => void};
+}) => {
   const [image, setImage] = useState('');
-  const [selectedValue, setSelectedValue] = useState('');
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const {control, handleSubmit, formState} = useForm({
     resolver: yupResolver(schema),
@@ -23,7 +23,7 @@ const MarketWrite = (props) => {
       contents: '',
     },
   });
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: IMarketWriteProps) => {
     try {
       const result = await createUseditem({
         variables: {
@@ -45,14 +45,12 @@ const MarketWrite = (props) => {
       console.log('성공');
       console.log(result);
       props.navigation.navigate('List');
-    } catch (error) {
+    } catch (error: any) {
       Alert.alert(error.message);
     }
   };
   return (
     <MarketWriteUI
-      selectedValue={selectedValue}
-      setSelectedValue={setSelectedValue}
       control={control}
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}

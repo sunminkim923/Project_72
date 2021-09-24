@@ -11,8 +11,8 @@ import {
 } from './marketDetail.queries';
 import {GlobalContext} from '../../../../../../App';
 
-const MarketDetail = (props) => {
-  const {userInfo} = useContext(GlobalContext);
+const MarketDetail = (props:any) => {
+  const {userInfo}:any = useContext(GlobalContext);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
@@ -20,9 +20,6 @@ const MarketDetail = (props) => {
   const {data} = useQuery(FETCH_USED_ITEM, {
     variables: {useditemId: props.item},
   });
-
-  console.log('디테일', data?.fetchUseditem.seller._id);
-  console.log('인포', userInfo._id);
 
   const onPressToggle = () => {
     toggleUseditemPick({
@@ -53,7 +50,7 @@ const MarketDetail = (props) => {
       });
       Alert.alert('상품이 정상적으로 삭제되었습니다');
       props.navigation.navigate('List');
-    } catch (error) {
+    } catch (error:any) {
       Alert.alert(error.message);
     }
   };
