@@ -15,9 +15,9 @@ export default function RoomScreen({route}: any) {
 
   const [user, setUser] = useState('');
 
-  console.log('BB', user);
-
   const {thread} = route.params;
+
+  console.log('라우트', route);
 
   const [messages, setMessages] = useState();
 
@@ -100,12 +100,12 @@ export default function RoomScreen({route}: any) {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: '#6646ee',
+            backgroundColor: '#26EBA6',
           },
         }}
         textStyle={{
           right: {
-            color: '#fff',
+            color: 'black',
           },
         }}
       />
