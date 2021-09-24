@@ -131,7 +131,7 @@ export const EditButton = styled.TouchableOpacity`
 export const DeleteButton = styled.TouchableOpacity`
   margin: 30px 30px 30px 30px;
   flex: 1;
-  height: 40px;
+  height: 55px;
   background-color: #26eba6;
   border-radius: 10px;
   align-items: center;
