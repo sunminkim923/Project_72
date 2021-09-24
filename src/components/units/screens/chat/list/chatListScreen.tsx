@@ -1,12 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Title, List, Divider} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import Loading from '../../../../commons/loading/loading';
+import {GlobalContext} from '../../../../../../App';
 
-export default function ChatListScreen({navigation}) {
+export default function ChatListScreen({navigation, route}) {
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const data = Object.assign({}, threads);
+
+  const {userInfo} = useContext(GlobalContext);
+  console.log(data);
 
   useEffect(() => {
     const unsubscribe = firestore()
@@ -16,7 +22,6 @@ export default function ChatListScreen({navigation}) {
         const threads = querySnapshot.docs.map((documentSnapshot) => {
           return {
             _id: documentSnapshot.id,
-            // give defaults
             name: '',
             latestMessage: {
               text: '',
@@ -30,10 +35,6 @@ export default function ChatListScreen({navigation}) {
           setLoading(false);
         }
       });
-
-    /**
-     * unsubscribe listener
-     */
     return () => unsubscribe();
   }, []);
 
@@ -51,8 +52,7 @@ export default function ChatListScreen({navigation}) {
           <TouchableOpacity
             onPress={() => navigation.navigate('Room', {thread: item})}>
             <List.Item
-              title={item.name}
-              description="Item description"
+              title={item.sellerName}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}

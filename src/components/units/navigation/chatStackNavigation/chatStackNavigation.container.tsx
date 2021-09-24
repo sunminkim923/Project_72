@@ -4,7 +4,6 @@ import ChatListScreen from '../../screens/chat/list/chatListScreen';
 import AddRoomScreen from '../../screens/chat/addRoom/addRoonScreen';
 import RoomScreen from '../../screens/chat/room/chatRoomScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {View, Text, StyleSheet, Alert} from 'react-native';
 import DialogPage from '../../../commons/dialog/dialog';
 import FinshScreen from '../../screens/chat/finish/finishScreen';
 
@@ -17,7 +16,7 @@ export default function ChatStackNavigationPage() {
       headerMode="none"
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#6646ee',
+          backgroundColor: '#26EBA6',
         },
         headerTintColor: '#ffffff',
         headerTitleStyle: {
@@ -43,7 +42,7 @@ export default function ChatStackNavigationPage() {
         name="Room"
         component={RoomScreen}
         options={({route, navigation}) => ({
-          title: route.params.thread.title,
+          title: route.params.thread.sellerName,
           headerRight: () => <DialogPage navigation={navigation} />,
         })}
       />
@@ -51,9 +50,3 @@ export default function ChatStackNavigationPage() {
     </ModalStack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  alertStyle: {
-    color: 'red',
-  },
-});

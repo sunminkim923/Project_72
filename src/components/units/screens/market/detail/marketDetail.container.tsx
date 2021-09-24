@@ -1,21 +1,26 @@
 import {useMutation, useQuery} from '@apollo/client';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Alert} from 'react-native';
 import {FETCH_USED_ITEMS} from '../list/marketList.queries';
 import MarketDetailUI from './marketDetail.presenter';
+import firestore from '@react-native-firebase/firestore';
 import {
   DELETE_USED_ITEM,
   FETCH_USED_ITEM,
   TOGGLE_USED_ITEM_PICK,
 } from './marketDetail.queries';
+import {GlobalContext} from '../../../../../../App';
 
 const MarketDetail = (props) => {
+  const {userInfo} = useContext(GlobalContext);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
   const {data} = useQuery(FETCH_USED_ITEM, {
     variables: {useditemId: props.item},
   });
+
   const onPressToggle = () => {
     toggleUseditemPick({
       variables: {
@@ -34,7 +39,7 @@ const MarketDetail = (props) => {
   };
   const onPressCloseModal = () => {
     setModalVisible(false);
-  }
+  };
   const onPressDelete = async () => {
     try {
       await deleteUseditem({
@@ -49,6 +54,32 @@ const MarketDetail = (props) => {
       Alert.alert(error.message);
     }
   };
+
+  const onPressChat = () => {
+    firestore()
+      .collection('THREADS')
+      .add({
+        title: data.fetchUseditem.seller.name,
+        sellerName: data.fetchUseditem.seller.name,
+        myName: userInfo.name,
+        sellerId: data.fetchUseditem._id,
+        myId: userInfo._id,
+        latestMessage: {
+          text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,
+          createdAt: new Date().getTime(),
+        },
+      })
+      .then((docRef) => {
+        docRef.collection('MESSAGES').add({
+          text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,
+          createdAt: new Date().getTime(),
+          system: true,
+        });
+
+        props.navigation.navigate('ChatList');
+      });
+  };
+
   return (
     <MarketDetailUI
       data={data}
@@ -58,7 +89,9 @@ const MarketDetail = (props) => {
       onPressDelete={onPressDelete}
       onPressOpenModal={onPressOpenModal}
       onPressCloseModal={onPressCloseModal}
+      onPressChat={onPressChat}
     />
   );
 };
+
 export default MarketDetail;

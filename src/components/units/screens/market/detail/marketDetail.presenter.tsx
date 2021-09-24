@@ -107,10 +107,10 @@ const MarketDetailUI = (props) => {
               </DeleteButton>
             </EtcButtonWrapper>
           ) : (
-            <ChatButton>
+            <ChatButton onPress={props.onPressChat}>
               <>
                 <Icon size={30} color={'#fff'} name="md-chatbubble-ellipses" />
-                <ButtonText>채팅으로 거래신청</ButtonText>
+                <ButtonText >채팅으로 거래신청</ButtonText>
               </>
             </ChatButton>
           )}
