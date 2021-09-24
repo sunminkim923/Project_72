@@ -32,7 +32,7 @@ export const CreatedAt = styled.Text`
   font-size: 14px;
   color: #4f4f4f;
 `;
-export const MoreButton = styled.View`
+export const MoreButton = styled.TouchableOpacity`
   width: 50px;
   height: 30px;
   align-items: center;

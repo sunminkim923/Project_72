@@ -47,7 +47,6 @@ export const SubmitButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
-export const SwitchTitle = styled.Text``;
 export const ButtonText = styled.Text`
   text-align: center;
   color: #fff;
