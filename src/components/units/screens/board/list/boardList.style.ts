@@ -34,7 +34,8 @@ export const CreatedAt = styled.Text`
 `;
 export const MoreButton = styled.TouchableOpacity`
   width: 50px;
-  height: 30px;
+  height: 60px;
+  /* flex-direction: row; */
   align-items: center;
   justify-content: center;
 `;

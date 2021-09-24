@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, TouchableOpacity} from 'react-native';
+import {FlatList, Text, TouchableOpacity} from 'react-native';
 import {
   BoardComments,
   BoardContentsText,
@@ -60,7 +60,7 @@ const BoardListUI = (props: any) => {
               </MoreButton>
             ) : (
               <MoreButton>
-                <Icon size={30} color={'red'} name="ellipsis-horizontal" />
+                <Icon size={30} color={'#26eba6'} name="ios-chatbubbles" />
               </MoreButton>
             )}
           </UserInfoRightContents>
