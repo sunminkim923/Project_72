@@ -40,7 +40,7 @@ const CommentsUI = (props: any) => {
         <CommentsCreactedAt>{getDate(item.createdAt)}</CommentsCreactedAt>
       </CommentsLeftWrapper>
       <CommentsRightWrapper>
-        <CommentsContents>{item.contents}</CommentsContents>
+        <CommentsContents numberOfLines={10}>{item.contents}</CommentsContents>
       </CommentsRightWrapper>
     </CommentsWrapper>
   );
