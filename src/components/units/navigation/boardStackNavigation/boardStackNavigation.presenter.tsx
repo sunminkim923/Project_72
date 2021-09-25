@@ -30,7 +30,9 @@ const BoardStackNavigationUI = () => {
             userInfo.name !== route.params.thread.sellerName
               ? route.params.thread.sellerName
               : route.params.thread.myName,
-          headerRight: () => <DialogPage navigation={navigation} />,
+          headerRight: () => (
+            <DialogPage navigation={navigation} route={route} />
+          ),
         })}
       />
       <Stack.Screen name="Finish" component={FinshScreen} />

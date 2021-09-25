@@ -24,6 +24,7 @@ export default function ChatStackNavigationPage() {
         headerTintColor: '#ffffff',
         headerTitleStyle: {
           fontSize: 22,
+          fontWeight: 'bold',
         },
       }}>
       <ModalStack.Screen
@@ -49,7 +50,9 @@ export default function ChatStackNavigationPage() {
             userInfo.name !== route.params.thread.sellerName
               ? route.params.thread.sellerName
               : route.params.thread.myName,
-          headerRight: () => <DialogPage navigation={navigation} />,
+          headerRight: () => (
+            <DialogPage navigation={navigation} route={route} />
+          ),
         })}
       />
       <ModalStack.Screen name="Finish" component={FinshScreen} />
