@@ -116,7 +116,7 @@ export default function RoomScreen({route}: any) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <Icon name="send" size={38} color="#6646ee" />
+          <Icon name="send" size={38} color="#26EBA6" />
         </View>
       </Send>
     );
@@ -167,13 +167,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   systemMessageWrapper: {
-    backgroundColor: '#6646ee',
+    backgroundColor: 'lightgray',
     borderRadius: 4,
     padding: 5,
   },
   systemMessageText: {
     fontSize: 14,
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
 });

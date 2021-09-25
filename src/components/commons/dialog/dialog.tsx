@@ -40,13 +40,11 @@ export default function DialogPage(props) {
         <Text> {isStart ? '즐거운 산책중🐕 ' : '산책시작🐕'} </Text>
       </TouchableOpacity>
       <Dialog.Container visible={visible}>
-        <Dialog.Title>
-          {props.route.params.thread.title} 님과의 산책
-        </Dialog.Title>
+        <Dialog.Title>즐거운 산책🎵</Dialog.Title>
         <Dialog.Description>
           {isStart
             ? ' 산책을 종료하시겠습니까? '
-            : `${props.route.params.thread.title} 님과의 즐거운 산책을 시작하시겠습니까?`}
+            : '즐거운 산책을 시작하시겠습니까?'}
         </Dialog.Description>
         <Dialog.Button label="아니오" onPress={handleCancel} />
         {/* <Dialog.Button label="네" onPress={isStart ? handleFinish : handleOk} /> */}
