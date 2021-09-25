@@ -11,8 +11,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {GlobalContext} from '../../../../../../App';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-export default function FinshScreen({navigation}: any) {
+export default function FinshScreen(props: any) {
   const {userInfo}: any = useContext(GlobalContext);
+
+  console.log('rrrr', props);
 
   const [isLike, setIsLike] = useState(false);
   const [isDisLike, setIsDisLike] = useState(false);
@@ -44,7 +46,7 @@ export default function FinshScreen({navigation}: any) {
 
   function onClickFinish() {
     if (isLike || isDisLike) {
-      navigation.navigate('채팅리스트');
+      props.navigation.navigate('채팅리스트');
     } else return;
   }
 

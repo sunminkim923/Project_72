@@ -2,10 +2,15 @@ import React, {useContext, useState} from 'react';
 import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Dialog from 'react-native-dialog';
 import {GlobalContext} from '../../../../App';
+import FinshScreen from '../../units/screens/chat/finish/finishScreen';
 
-export default function DialogPage({navigation}) {
+export default function DialogPage(props) {
   const [visible, setVisible] = useState(false);
   const [isStart, setIsStart] = useState(false);
+  const [routeData, setRouteData] = useState('');
+
+  // console.log('프롭스', props.route.params.thread.title);
+  console.log('프롭스', routeData);
 
   const {userInfo} = useContext(GlobalContext);
 
@@ -25,7 +30,8 @@ export default function DialogPage({navigation}) {
   const handleFinish = () => {
     setIsStart(false);
     setVisible(false);
-    navigation.navigate('Finish');
+    setRouteData(props.route.params.thread.title);
+    props.navigation.navigate('Finish');
   };
 
   return (
@@ -34,14 +40,22 @@ export default function DialogPage({navigation}) {
         <Text> {isStart ? '즐거운 산책중🐕 ' : '산책시작🐕'} </Text>
       </TouchableOpacity>
       <Dialog.Container visible={visible}>
-        <Dialog.Title> 님과의 산책</Dialog.Title>
+        <Dialog.Title>
+          {props.route.params.thread.title} 님과의 산책
+        </Dialog.Title>
         <Dialog.Description>
           {isStart
             ? ' 산책을 종료하시겠습니까? '
-            : `${userInfo.name} 님과의 즐거운 산책을 시작하시겠습니까?`}
+            : `${props.route.params.thread.title} 님과의 즐거운 산책을 시작하시겠습니까?`}
         </Dialog.Description>
         <Dialog.Button label="아니오" onPress={handleCancel} />
-        <Dialog.Button label="네" onPress={isStart ? handleFinish : handleOk} />
+        {/* <Dialog.Button label="네" onPress={isStart ? handleFinish : handleOk} /> */}
+        <Dialog.Button
+          label="네"
+          onPress={() => {
+            handleFinish(routeData);
+          }}
+        />
       </Dialog.Container>
     </View>
   );

@@ -10,13 +10,27 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {GlobalContext} from '../../../../../App';
 import FinshScreen from '../../screens/chat/finish/finishScreen';
 
-
 const Stack = createNativeStackNavigator();
 const MarketStackNavigationUI = () => {
   return (
     <>
       <Stack.Navigator screenOptions={() => ({headerShown: false})}>
-        <Stack.Screen name="List" component={MarketListPage} />
+        <Stack.Screen
+          name="List"
+          component={MarketListPage}
+          options={() => ({
+            title: '중고마켓',
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: '#26EBA6',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontSize: 22,
+              fontWeight: 'bold',
+            },
+          })}
+        />
         <Stack.Screen name="Detail" component={MarketDetailPage} />
         <Stack.Screen name="Write" component={MarketWritePage} />
         <Stack.Screen
@@ -32,7 +46,9 @@ const MarketStackNavigationUI = () => {
               userInfo.name !== route.params.thread.sellerName
                 ? route.params.thread.sellerName
                 : route.params.thread.myName,
-            headerRight: () => <DialogPage navigation={navigation} />,
+            headerRight: () => (
+              <DialogPage navigation={navigation} route={route} />
+            ),
           })}
         />
         <Stack.Screen name="Finish" component={FinshScreen} />
