@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MarketListPage from '../../../../../pages/screens/market';
 import MarketDetailPage from '../../../../../pages/screens/market/[marketId]';
@@ -10,10 +10,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {GlobalContext} from '../../../../../App';
 import FinshScreen from '../../screens/chat/finish/finishScreen';
 
+
 const Stack = createNativeStackNavigator();
 const MarketStackNavigationUI = () => {
-  const {userInfo} = useContext(GlobalContext);
-
   return (
     <>
       <Stack.Navigator screenOptions={() => ({headerShown: false})}>

@@ -1,6 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {Animated} from 'react-native';
 import {Container, Wrapper} from './landingPage.style';
+import { ILandingPage } from './landingPage.types';
 
 const FadeInView = (props: any) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -25,7 +26,7 @@ const FadeInView = (props: any) => {
     </Animated.View>
   );
 };
-export default (props) => {
+export default (props:ILandingPage) => {
   return (
     <Container>
       <FadeInView setIsLoading={props.setIsLoading}>

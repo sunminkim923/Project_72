@@ -30,8 +30,9 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import {GlobalContext} from '../../../../../../App';
 import { Alert, Modal } from 'react-native';
-const MarketDetailUI = (props) => {
-  const {userInfo} = useContext(GlobalContext);
+import { IMarketDetailUIProps } from './marketDetail.types';
+const MarketDetailUI = (props:IMarketDetailUIProps) => {
+  const {userInfo}:any = useContext(GlobalContext);
   return (
     <>
         <Modal
@@ -56,7 +57,7 @@ const MarketDetailUI = (props) => {
 
       <Container>
         
-        <ItemImage source={{uri:`https://storage.googleapis.com/${props.data?.fetchUseditem.images.[0]}`}}/>
+        <ItemImage source={{uri:`https://storage.googleapis.com/${props.data?.fetchUseditem.images[0]}`}}/>
         
         <Wrapper>
           <UserWrapper>
