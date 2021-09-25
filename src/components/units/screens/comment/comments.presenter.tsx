@@ -56,6 +56,7 @@ const CommentsUI = (props: any) => {
             data={state.commentDate}
             renderItem={renderItem}
             onEndReached={props.hasMore && props.onLoadMore}
+            inverted
           />
         </Wrapper>
         <WriteCommentWrapper>
