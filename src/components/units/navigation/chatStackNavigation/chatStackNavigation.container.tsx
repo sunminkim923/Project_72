@@ -6,10 +6,13 @@ import RoomScreen from '../../screens/chat/room/chatRoomScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DialogPage from '../../../commons/dialog/dialog';
 import FinshScreen from '../../screens/chat/finish/finishScreen';
+import {GlobalContext} from '../../../../../App';
 
 const ModalStack = createNativeStackNavigator();
 
 export default function ChatStackNavigationPage() {
+  const {userInfo} = useContext(GlobalContext);
+
   return (
     <ModalStack.Navigator
       mode="modal"
@@ -42,7 +45,10 @@ export default function ChatStackNavigationPage() {
         name="Room"
         component={RoomScreen}
         options={({route, navigation}) => ({
-          title: route.params.thread.sellerName,
+          title:
+            userInfo.name !== route.params.thread.sellerName
+              ? route.params.thread.sellerName
+              : route.params.thread.myName,
           headerRight: () => <DialogPage navigation={navigation} />,
         })}
       />

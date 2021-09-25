@@ -21,9 +21,6 @@ const MarketDetail = (props) => {
     variables: {useditemId: props.item},
   });
 
-  console.log('디테일', data?.fetchUseditem.seller._id);
-  console.log('인포', userInfo._id);
-
   const onPressToggle = () => {
     toggleUseditemPick({
       variables: {
@@ -68,17 +65,17 @@ const MarketDetail = (props) => {
         sellerId: data.fetchUseditem.seller._id,
         myId: userInfo._id,
         latestMessage: {
-          text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,
+          text: ' 채팅이 연결되었습니다.',
           createdAt: new Date().getTime(),
         },
       })
       .then((docRef) => {
         docRef.collection('MESSAGES').add({
-          text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,
+          text: '채팅이 연결되었습니다.',
           createdAt: new Date().getTime(),
           system: true,
         });
-
+        console.log(docRef);
         props.navigation.navigate('ChatList');
       });
   };
