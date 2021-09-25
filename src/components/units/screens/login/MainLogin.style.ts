@@ -30,12 +30,14 @@ export const ButtonWrapper = styled.View`
 `;
 
 export const LoginButtonWrapper = styled.TouchableOpacity`
-  width: 100%;
+  width: 97%;
   margin-top: 45px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-left: 5px;
   background-color: #26eba6;
-  height: 45px;
+  height: 40px;
   border-radius: 10px;
+  justify-content: center;
 `;
 export const LoginButton = styled.Text`
   color: white;

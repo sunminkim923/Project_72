@@ -6,9 +6,9 @@ const SocialLoginUi = (props: any) => {
   return (
     <Wrapper>
       <GoogleSigninButton
-        style={{height: 45}}
+        style={{width: '100%'}}
         size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
+        color={GoogleSigninButton.Color.Light}
         onPress={props.onGoogleLogin}
       />
     </Wrapper>

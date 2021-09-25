@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Controller} from 'react-hook-form';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {
   Wrapper,
   LogoWrapper,
@@ -46,10 +46,13 @@ const MainLoginUi = (props: any) => {
           />
         )}
       />
-      <LoginButtonWrapper onPress={props.handleSubmit(props.onAppLogin)}>
-        <LoginButton>{'로그인'}</LoginButton>
-      </LoginButtonWrapper>
-      <SocialLogin />
+      <View style={{padding: 'auto'}}>
+        <LoginButtonWrapper onPress={props.handleSubmit(props.onAppLogin)}>
+          <LoginButton>{'로그인'}</LoginButton>
+        </LoginButtonWrapper>
+        <SocialLogin />
+      </View>
+
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('SignUp');
