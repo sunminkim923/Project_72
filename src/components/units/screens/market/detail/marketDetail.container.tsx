@@ -65,17 +65,17 @@ const MarketDetail = (props:any) => {
         sellerId: data.fetchUseditem.seller._id,
         myId: userInfo._id,
         latestMessage: {
-          text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,
+          text: ' 채팅이 연결되었습니다.',
           createdAt: new Date().getTime(),
         },
       })
       .then((docRef) => {
         docRef.collection('MESSAGES').add({
-          text: ` ${data.fetchUseditem.seller.name} 님과 연결되었습니다.`,
+          text: '채팅이 연결되었습니다.',
           createdAt: new Date().getTime(),
           system: true,
         });
-
+        console.log(docRef);
         props.navigation.navigate('ChatList');
       });
   };

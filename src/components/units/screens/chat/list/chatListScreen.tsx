@@ -14,6 +14,9 @@ export default function ChatListScreen({navigation, route}) {
   const chatData = threads.filter(function (data) {
     return data.sellerId === userInfo._id || data.myId === userInfo._id;
   });
+  // console.log('쓰레드', threads);
+  // console.log('데이타', chatData);
+  // console.log('인포', userInfo.name);
 
   useEffect(() => {
     const unsubscribe = firestore()
@@ -53,7 +56,11 @@ export default function ChatListScreen({navigation, route}) {
           <TouchableOpacity
             onPress={() => navigation.navigate('Room', {thread: item})}>
             <List.Item
-              title={item.sellerName}
+              title={
+                userInfo.name !== item.sellerName
+                  ? item.sellerName
+                  : item.myName
+              }
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}

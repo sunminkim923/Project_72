@@ -3,10 +3,10 @@ import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Dialog from 'react-native-dialog';
 import {GlobalContext} from '../../../../App';
 
-export default function DialogPage(props, {navigation}) {
+export default function DialogPage({navigation}) {
   const [visible, setVisible] = useState(false);
   const [isStart, setIsStart] = useState(false);
-  console.log('FFF', props);
+
   const {userInfo} = useContext(GlobalContext);
 
   const showDialog = () => {

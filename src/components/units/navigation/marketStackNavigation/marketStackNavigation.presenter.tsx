@@ -7,6 +7,9 @@ import RoomScreen from '../../screens/chat/room/chatRoomScreen';
 import DialogPage from '../../../commons/dialog/dialog';
 import ChatListScreen from '../../screens/chat/list/chatListScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {GlobalContext} from '../../../../../App';
+import FinshScreen from '../../screens/chat/finish/finishScreen';
+
 
 const Stack = createNativeStackNavigator();
 const MarketStackNavigationUI = () => {
@@ -25,11 +28,14 @@ const MarketStackNavigationUI = () => {
               backgroundColor: '#26EBA6',
             },
             headerTintColor: '#fff',
-            // @ts-ignore
-            title: route?.params?.thread.sellerName,
+            title:
+              userInfo.name !== route.params.thread.sellerName
+                ? route.params.thread.sellerName
+                : route.params.thread.myName,
             headerRight: () => <DialogPage navigation={navigation} />,
           })}
         />
+        <Stack.Screen name="Finish" component={FinshScreen} />
         <Stack.Screen
           name="ChatList"
           component={ChatListScreen}
@@ -43,14 +49,14 @@ const MarketStackNavigationUI = () => {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerRight: () => (
-              <Icon
-                name="chatbubbles-sharp"
-                size={28}
-                color="#ffffff"
-                onPress={() => navigation.navigate('AddRoom')}
-              />
-            ),
+            // headerRight: () => (
+            //   <Icon
+            //     name="chatbubbles-sharp"
+            //     size={28}
+            //     color="#ffffff"
+            //     onPress={() => navigation.navigate('AddRoom')}
+            //   />
+            // ),
           })}
         />
       </Stack.Navigator>

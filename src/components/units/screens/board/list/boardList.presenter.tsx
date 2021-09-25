@@ -60,7 +60,14 @@ const BoardListUI = (props: any) => {
               </MoreButton>
             ) : (
               <MoreButton>
-                <Icon size={30} color={'#26eba6'} name="ios-chatbubbles" />
+                <Icon
+                  size={30}
+                  color={'#26eba6'}
+                  name="ios-chatbubbles"
+                  onPress={() => {
+                    props.onPressChat(item);
+                  }}
+                />
               </MoreButton>
             )}
           </UserInfoRightContents>
