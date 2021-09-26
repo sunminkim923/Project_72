@@ -1,7 +1,5 @@
----
 # 1. Intro
-
-<img width="360" alt="랜딩페이지 1" src="https://user-images.githubusercontent.com/86465929/134766266-9cb39897-cf49-4568-a4ad-6f02e1ff3369.png">
+![메인사진01](https://user-images.githubusercontent.com/86465929/134794702-69db4319-623e-4b9b-9d9a-2efe7e503c1e.png)
 
 + 팀명 : Project72
 + 프로젝트명 : 산책가까?
@@ -10,3 +8,21 @@
 + 배포 링크 : 
 + 서비스 소개영상 :
 + 개발과정 :  Notion (https://www.notion.so/Project-_72-fafd8cb37e514e16b5ac2ee6ecf645a0)
+
+# 2. Project
+
+## ✐ About 
+![프로젝트 02](https://user-images.githubusercontent.com/86465929/134794868-749ed404-cad7-42aa-979d-b373a5e8d4c9.png)
+
+> 반려동물을 키우는 인구수 1500만명 시대...
+>
+> 가족 구성원의 형태가 1인가족등 소규모 가족이 급증함에 따라 반려동물을 키우는 인구수가 1500만명을 넘어섰다고한다. 
+>
+> 팀프로젝트로 기획한 '산책가까'는 이러한 시대에 맞게 반려견 산책이라는 큰 주제를 가지고 반려인들이 서로 소통할 수 있는 커뮤니티 어플리케이션을 만들고자 하였다.
+>
+> 가족의 구성원으로 인정받고 있는 반려동물을 건강하게 케어하기 위해서 서로의 지식을 나누고, 산책메이트를 연결해줌으로써 주변에 있는 반려인들과 연결고리가 되길바라는 마음으로 만들어보았다. 
+
+## ✐ 사용된 기술 스택
+![프로젝트03](https://user-images.githubusercontent.com/86465929/134795492-6e84ebb7-68ed-4e99-a313-8c870b03aa40.png)
+
+## ✐ 주요기능
