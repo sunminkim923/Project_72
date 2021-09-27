@@ -6,8 +6,6 @@ import MarketWritePage from '../../../../../pages/screens/market/new';
 import RoomScreen from '../../screens/chat/room/chatRoomScreen';
 import DialogPage from '../../../commons/dialog/dialog';
 import ChatListScreen from '../../screens/chat/list/chatListScreen';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {GlobalContext} from '../../../../../App';
 import FinshScreen from '../../screens/chat/finish/finishScreen';
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +17,7 @@ const MarketStackNavigationUI = () => {
           name="List"
           component={MarketListPage}
           options={() => ({
-            title: '중고마켓',
+            title: '중고장터',
             headerShown: true,
             headerStyle: {
               backgroundColor: '#26EBA6',
@@ -65,14 +63,6 @@ const MarketStackNavigationUI = () => {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            // headerRight: () => (
-            //   <Icon
-            //     name="chatbubbles-sharp"
-            //     size={28}
-            //     color="#ffffff"
-            //     onPress={() => navigation.navigate('AddRoom')}
-            //   />
-            // ),
           })}
         />
       </Stack.Navigator>
