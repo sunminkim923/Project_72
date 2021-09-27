@@ -50,4 +50,17 @@
 + 채팅방내에서 산책종료 클릭시 산책종료 페이지로 이동
 + 상대방 평가 시스템 구현
 
+### 그 외 기능
++ 자체 회원가입 
++ 소셜 로그인
++ 프로필 사진 등록
++ 반려견정보 등록
+
+
+## ✐ Work Flow
+![flowChart01 (1)](https://user-images.githubusercontent.com/86465929/134840952-99526fc8-e3c3-4cd0-882c-411cfe86fe9b.png)
+
+![팀프로젝트-흐름도 (1)](https://user-images.githubusercontent.com/86465929/134854750-0a9c1b7e-2c43-4328-9c76-fdda45191703.png)
+
+
 
